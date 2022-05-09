@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[2.0.123, )"
             },
+            "Dapper.Contrib": {
+              "target": "Package",
+              "version": "[2.0.78, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.4, )"
@@ -52,9 +56,9 @@
               "target": "Package",
               "version": "[6.0.4, )"
             },
-            "Serilog": {
+            "Serilog.AspNetCore": {
               "target": "Package",
-              "version": "[2.11.0, )"
+              "version": "[5.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
