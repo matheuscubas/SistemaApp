@@ -1,0 +1,14 @@
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\SistemaApp.Core.csproj.AssemblyReference.cache
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\SistemaApp.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\SistemaApp.Core.AssemblyInfoInputs.cache
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\SistemaApp.Core.AssemblyInfo.cs
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\SistemaApp.Core.csproj.CoreCompileInputs.cache
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\bin\Debug\net6.0\SistemaApp.Core.deps.json
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\bin\Debug\net6.0\SistemaApp.Core.dll
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\bin\Debug\net6.0\SistemaApp.Core.pdb
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\SistemaApp.Core.dll
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\refint\SistemaApp.Core.dll
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\SistemaApp.Core.pdb
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\ref\SistemaApp.Core.dll
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\bin\Debug\net6.0\SistemaApp.Core.runtimeconfig.json
+C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\obj\Debug\net6.0\SistemaApp.Core.genruntimeconfig.cache
