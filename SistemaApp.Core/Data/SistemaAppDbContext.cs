@@ -4,7 +4,7 @@ using SistemaApp.Core.Models;
 
 namespace SistemaApp.Core.Data
 {
-    internal class SistemaAppDbContext : DbContext
+    public class SistemaAppDbContext : DbContext
     {
         private const string ConnectionString = "Server=.\\SQLExpress;Database=SistemaApp;TrustServerCertificate=True;Integrated Security = True;";
 
