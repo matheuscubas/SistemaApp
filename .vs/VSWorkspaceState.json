@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\SistemaApp.Api",
+    "\\SistemaApp.Api\\Controllers"
   ],
-  "SelectedNode": "\\SistemaApp.sln",
+  "SelectedNode": "\\SistemaApp.Api\\Controllers",
   "PreviewInSolutionExplorer": false
 }
