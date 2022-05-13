@@ -6,7 +6,8 @@
 
         public IEnumerable<T> GetAll();
 
-        public T GetById(int id);
+        public T? GetById(int id);
+        public IEnumerable<T> GetPaginated();
 
         public void Update(T model);
 

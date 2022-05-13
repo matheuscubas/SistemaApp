@@ -1,19 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SistemaApp.Core.Data.Mappings;
 using SistemaApp.Core.Models;
+using System.Reflection;
 
 namespace SistemaApp.Core.Data
 {
     public class SistemaAppDbContext : DbContext
     {
-        private const string ConnectionString = "Server=.\\SQLExpress;Database=SistemaApp;TrustServerCertificate=True;Integrated Security = True;";
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer(ConnectionString);
+        public SistemaAppDbContext(DbContextOptions<SistemaAppDbContext> options)
+            : base(options)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new OrderDetailMap());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
         
         public DbSet<Category> Categories { get; set; }

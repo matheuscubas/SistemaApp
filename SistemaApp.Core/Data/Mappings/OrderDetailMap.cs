@@ -42,6 +42,9 @@ namespace SistemaApp.Core.Data.Mappings
                 .HasForeignKey(x => x.ProductId)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
+
+            builder.Navigation(x => x.Order);
+            builder.Navigation(x => x.Product);
         }
     }
 }

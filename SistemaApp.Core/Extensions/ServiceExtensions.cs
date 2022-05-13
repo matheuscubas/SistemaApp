@@ -1,11 +1,14 @@
-﻿using SistemaApp.Core.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SistemaApp.Core.Data;
 using SistemaApp.Core.Data.Seed;
 
 namespace SistemaApp.Core.Extensions
 {
-    public class ServiceExtensions
+    public static class ServiceExtensions
     {
-       public void AddSeeder(SistemaAppDbContext context)
+       public static IServiceCollection AddSeeder(
+           this IServiceCollection collection,
+           SistemaAppDbContext context)
         {
             var type = typeof(ISeeder);
 
@@ -17,6 +20,8 @@ namespace SistemaApp.Core.Extensions
 
             foreach (var seeder in types)
                 seeder.SeedData(context);
+
+            return collection;
         }
     }
 }

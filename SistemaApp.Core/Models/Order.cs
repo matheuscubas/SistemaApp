@@ -9,7 +9,6 @@
         public DateTime OrderDate { get; set; }
         public Customer Customer { get; set; }
         public Employee Employee { get; set; }
-        public Supplier Supplier { get; set; }
         public Shipper Shipper { get; set; }
     }
 }

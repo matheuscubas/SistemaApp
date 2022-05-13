@@ -33,6 +33,23 @@ namespace SistemaApp.Core.Data.Mappings
             builder.Property(x => x.Price)
                 .HasPrecision(18,2)
                 .HasDefaultValue(null);
+
+
+            //Relations
+            builder.HasOne(x => x.Supplier)
+                .WithMany(x => x.Products)
+                .HasForeignKey(x => x.SupplierId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
+
+            builder.HasOne(x => x.Category)
+                .WithMany(x => x.Products)
+                .HasForeignKey(x => x.CategoryId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
+
+            builder.Navigation(x => x.Supplier);
+            builder.Navigation(x => x.Category);
         }
     }
 }

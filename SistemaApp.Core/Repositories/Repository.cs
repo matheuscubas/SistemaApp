@@ -7,34 +7,41 @@ namespace SistemaApp.Core.Repositories
         where T : class
     {
         private readonly SistemaAppDbContext _context;
-        private readonly DbSet<T> _dbset;
+        private readonly DbSet<T> _dbSet;
 
         public Repository(SistemaAppDbContext context)
         {
             _context = context;
-            _dbset = context.Set<T>();
+            _dbSet = context.Set<T>();
         }
 
         public void Create(T model)
-            => _context.Add(model);
+            => _dbSet.Add(model);
 
 
         public IEnumerable<T> GetAll()
-            => _dbset.ToList();
+        {
+            throw new NotImplementedException();
+        }
 
-        public T GetById(int id)
-            => _dbset.Find(id);
-
+        public T? GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public IEnumerable<T> GetPaginated()
+        {
+            throw new NotImplementedException();
+        }
 
         public void Update(T model)
         {
-            _dbset.Attach(model);
+            _dbSet.Attach(model);
             _context.Entry(model).State = EntityState.Modified;
         }
 
         public void Delete(int id)
         {
-            var deleteModel = _dbset.Find(id);
+            var deleteModel = _dbSet.Find(id);
             Delete(deleteModel);
         }
 
@@ -42,9 +49,9 @@ namespace SistemaApp.Core.Repositories
         {
             if(_context.Entry(model).State == EntityState.Detached)
             {
-                _dbset.Attach(model);
+                _dbSet.Attach(model);
             }
-            _dbset.Remove(model);
+            _dbSet.Remove(model);
         }
     }
 }

@@ -26,7 +26,8 @@ namespace SistemaApp.Core.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("CategoryId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -36,18 +37,20 @@ namespace SistemaApp.Core.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CategoryName");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("CustomerId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -69,7 +72,8 @@ namespace SistemaApp.Core.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CustomerName");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
@@ -77,14 +81,15 @@ namespace SistemaApp.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("EmployeeId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -101,7 +106,7 @@ namespace SistemaApp.Core.Migrations
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("ntext");
 
                     b.Property<string>("Photo")
                         .IsRequired()
@@ -109,14 +114,15 @@ namespace SistemaApp.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("OrderId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -132,9 +138,6 @@ namespace SistemaApp.Core.Migrations
                     b.Property<int>("ShipperId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
@@ -143,9 +146,7 @@ namespace SistemaApp.Core.Migrations
 
                     b.HasIndex("ShipperId");
 
-                    b.HasIndex("SupplierId");
-
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.OrderDetail", b =>
@@ -179,7 +180,8 @@ namespace SistemaApp.Core.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ProductId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -191,7 +193,8 @@ namespace SistemaApp.Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
-                        .HasColumnType("float");
+                        .HasPrecision(18, 2)
+                        .HasColumnType("float(18)");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
@@ -206,20 +209,22 @@ namespace SistemaApp.Core.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Shipper", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ShipperId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ShipperName");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -227,14 +232,15 @@ namespace SistemaApp.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shippers");
+                    b.ToTable("Shippers", (string)null);
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Supplier", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("SupplierId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -256,7 +262,8 @@ namespace SistemaApp.Core.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("SupplierName");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -268,7 +275,7 @@ namespace SistemaApp.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suppliers");
+                    b.ToTable("Suppliers", (string)null);
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Order", b =>
@@ -291,19 +298,11 @@ namespace SistemaApp.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SistemaApp.Core.Models.Supplier", "Supplier")
-                        .WithMany("Orders")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Customer");
 
                     b.Navigation("Employee");
 
                     b.Navigation("Shipper");
-
-                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.OrderDetail", b =>
@@ -330,13 +329,13 @@ namespace SistemaApp.Core.Migrations
                     b.HasOne("SistemaApp.Core.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SistemaApp.Core.Models.Supplier", "Supplier")
                         .WithMany("Products")
                         .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -361,8 +360,6 @@ namespace SistemaApp.Core.Migrations
 
             modelBuilder.Entity("SistemaApp.Core.Models.Supplier", b =>
                 {
-                    b.Navigation("Orders");
-
                     b.Navigation("Products");
                 });
 #pragma warning restore 612, 618

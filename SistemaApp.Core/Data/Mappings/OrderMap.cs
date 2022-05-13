@@ -33,9 +33,28 @@ namespace SistemaApp.Core.Data.Mappings
             builder.Property(x => x.ShipperId)
                 .HasDefaultValue(null);
 
-            builder.Property(x => x.Customer);
-            builder.Property(x => x.Employee);
-            builder.Property(x => x.Shipper);
+            //Relations
+            builder.HasOne(x => x.Customer)
+                .WithMany(x => x.Orders)
+                .HasForeignKey(x => x.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            builder.HasOne(x => x.Employee)
+                .WithMany(x => x.Orders)
+                .HasForeignKey(x => x.EmployeeId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            builder.HasOne(x => x.Shipper)
+                .WithMany()
+                .HasForeignKey(x => x.ShipperId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            builder.Navigation(x => x.Customer);
+            builder.Navigation(x => x.Employee);
+            builder.Navigation(x => x.Shipper);
         }
     }
 }
