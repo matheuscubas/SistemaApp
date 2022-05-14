@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 using SistemaApp.Core.Data;
 
@@ -17,14 +16,17 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<SistemaAppDbContext>(
-    x => x.UseSqlServer(
-        builder
-        .Configuration
-        .GetConnectionString("DefaultConnection")!
-        ));
+builder.Services.AddDbContext<SistemaAppDbContext>(x => x
+.UseSqlServer(
+    builder
+    .Configuration
+    .GetConnectionString("DefaultConnection")!
+    ));
 
-//Adicionar Services.SeedData();
+//Regra para ver se o banco está vazio
+//if(DbSet<T>.Any())
+//chamar o CsvReader pra gerar o Csv
+//chamar o seed u
 
 var app = builder.Build();
 

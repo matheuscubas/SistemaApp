@@ -7,16 +7,17 @@ namespace SistemaApp.Core.Extensions
     public static class ServiceExtensions
     {
        public static IServiceCollection AddSeeder(
-           this IServiceCollection collection,
-           SistemaAppDbContext context)
+           this IServiceCollection collection)
         {
-            var type = typeof(ISeeder);
+            var serviceProvider = collection.BuildServiceProvider();
+            var context = serviceProvider.GetService<SistemaAppDbContext>();
+            var type = typeof(ISeeder<object>);
 
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(x => x.GetTypes())
                 .Where(x => type.IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
                 .Select(x => Activator.CreateInstance(x))
-                .Cast<ISeeder>();
+                .Cast<ISeeder<object>>();
 
             foreach (var seeder in types)
                 seeder.SeedData(context);

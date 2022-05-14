@@ -11,12 +11,10 @@ namespace SistemaApp.Core.Services.CsvReader
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture);
 
-            using (var reader = new StreamReader(filePath))
-                using (var csv = new CsvReader(reader, config))
-                {
-                    var record = csv.GetRecords<T>();
-                    return record;
-                }
+            using var reader = new StreamReader(filePath);
+            using var csv = new CsvReader(reader, config);
+            var record = csv.GetRecords<T>();
+            return record;
         }
     }
 }
