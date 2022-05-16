@@ -19,16 +19,16 @@ namespace SistemaApp.Core.Repositories
             => _dbSet.Add(model);
 
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public T? GetById(int id)
+        public virtual T? GetById(int id)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<T> GetPaginated()
+        public virtual IEnumerable<T> GetPaginated()
         {
             throw new NotImplementedException();
         }

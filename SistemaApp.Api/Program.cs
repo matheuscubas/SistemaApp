@@ -1,3 +1,4 @@
+using DesafioDesafiante.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SistemaApp.Core.Data;
@@ -23,6 +24,7 @@ builder.Services.AddDbContext<SistemaAppDbContext>(x => x
     .Configuration
     .GetConnectionString("DefaultConnection")!
     ));
+builder.Services.AddScoped<ConnectionService>();
 
 //builder.Services.AddHandlerSeeder();
 
