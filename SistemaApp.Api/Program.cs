@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SistemaApp.Core.Data;
+using SistemaApp.Core.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,8 @@ builder.Services.AddDbContext<SistemaAppDbContext>(x => x
     .Configuration
     .GetConnectionString("DefaultConnection")!
     ));
+
+builder.Services.AddHandlerSeeder();
 
 //Regra para ver se o banco está vazio
 //if(DbSet<T>.Any())
