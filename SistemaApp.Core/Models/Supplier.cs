@@ -27,6 +27,8 @@ namespace SistemaApp.Core.Models
 
         [Index(7)]
         public string Phone { get; set; }
+
+        [Ignore]
         public ICollection<Product> Products { get; set; }
     }
 }

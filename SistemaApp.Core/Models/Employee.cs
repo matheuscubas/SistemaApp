@@ -21,6 +21,8 @@ namespace SistemaApp.Core.Models
 
         [Index(5)]
         public string Notes { get; set; }
+
+        [Ignore]
         public ICollection<Order> Orders { get; set; }
     }
 }

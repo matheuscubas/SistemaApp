@@ -18,8 +18,12 @@ namespace SistemaApp.Core.Models
 
         [Index(3)]
         public DateTime OrderDate { get; set; }
+
+        [Ignore]
         public Customer Customer { get; set; }
+        [Ignore]
         public Employee Employee { get; set; }
+        [Ignore]
         public Shipper Shipper { get; set; }
     }
 }

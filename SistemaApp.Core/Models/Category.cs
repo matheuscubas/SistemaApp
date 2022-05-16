@@ -12,6 +12,8 @@ namespace SistemaApp.Core.Models
 
         [Index(2)]
         public string Description { get; set; }
+
+        [Ignore]
         public ICollection<Product> Products { get; set; }
     }
 }

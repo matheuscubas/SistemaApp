@@ -1,4 +1,4 @@
-﻿using SistemaApp.Core.Services.CsvReader;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace SistemaApp.Core.Data.Seed
 {
@@ -6,6 +6,6 @@ namespace SistemaApp.Core.Data.Seed
         where T : class
     {
         //Transformar em um task para poder realizar de forma Assincrona dps.
-        public void SeedData(SistemaAppDbContext context);
+        public void SeedData(ModelBuilder builder); //SistemaAppDbContext context);
     }
 }
