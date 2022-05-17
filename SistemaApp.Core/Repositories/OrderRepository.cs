@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SistemaApp.Core.Data;
+using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Extensions;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Services.ConnectionService;
@@ -15,27 +16,41 @@ namespace SistemaApp.Core.Repositories
             _connection = connection;
         }
 
-        public override IEnumerable<Order> GetAll()
+        public override IEnumerable<OrderWithNamesDto> GetAll()
         {
-            var query = @"SELECT 
-                            [Orders].* 
-                          FROM
-                            Orders";
+            var query = @"
+                        SELECT Orders.OrderId AS Id,
+                        Customers.CustomerName AS Customer,
+                        Employees.FirstName AS Employee,
+                        Shippers.ShipperName AS Shipper,
+                        Products.Name AS Product,
+                        OrderDetails.Quantity AS Quantity,
+                        OrderDate
+                        FROM Orders
+                        INNER JOIN Customers ON Customers.CustomerId = Orders.CustomerId
+                        INNER JOIN Employees ON Orders.EmployeeId = Employees.EmployeeId
+                        INNER JOIN Shippers ON Orders.ShipperId = Shippers.ShipperId
+                        INNER JOIN OrderDetails ON Orders.OrderId = OrderDetails.OrderId
+                        INNER JOIN Products ON OrderDetails.ProductId = Products.ProductId";
 
             using var connection = _connection.Connection();
-            var orders = connection.Query<Order>(query);
+            var orders = connection.Query<OrderWithNamesDto>(query);
 
             return orders;
         }
 
         public override Order GetById(int id)
         {
-            var query = @"SELECT 
-                            [Orders].* 
+            var query = @"Select
+	                        OrderId as Id,
+	                        CustomerId,
+	                        EmployeeId,
+	                        ShipperId,
+	                        OrderDate
                           FROM
-                            Orders
-                           WHERE
-                               Orders.OrderId = @orderId";
+	                        Orders
+                          WHERE
+                            Orders.OrderId = @orderId";
 
             using var connection = _connection.Connection();
             var order = connection.QueryFirstOrDefault<Order>(query, new { orderId = id });

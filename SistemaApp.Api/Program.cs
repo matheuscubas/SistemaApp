@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SistemaApp.Core.Data;
+using SistemaApp.Core.Extensions;
+using SistemaApp.Core.Repositories;
 using SistemaApp.Core.Services.ConnectionService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,8 @@ builder.Services.AddDbContext<SistemaAppDbContext>(x => x
     .GetConnectionString("DefaultConnection")!
     ));
 builder.Services.AddScoped<ConnectionService>();
+builder.Services.AddScoped<OrderRepository>();
+
 //builder.Services.AddHandlerSeeder();
 
 var app = builder.Build();
