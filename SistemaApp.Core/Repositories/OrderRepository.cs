@@ -1,9 +1,8 @@
 ﻿using Dapper;
-using DesafioDesafiante.Services;
-using Microsoft.AspNetCore.Connections.Features;
 using SistemaApp.Core.Data;
 using SistemaApp.Core.Extensions;
 using SistemaApp.Core.Models;
+using SistemaApp.Core.Services.ConnectionService;
 
 namespace SistemaApp.Core.Repositories
 {
@@ -43,14 +42,17 @@ namespace SistemaApp.Core.Repositories
 
             return order;
         }
-        public override IEnumerable<Order> GetPaginated(int pageSize, int pageNumber)
+        public override async Task<IEnumerable<Order>> GetPaginated(int pageSize, int pageNumber)
         {
             var query = @"SELECT 
                             [Orders].* 
-                          FROM
+                            FROM
                             Orders";
 
-            QueryExentions.GetUsingSqlServerNativePagination<Order>(_connection, query, parameters: , pageSize, pageNumber);
+            var connection = _connection.Connection();
+
+            var result = await connection.GetUsingSqlServerNativePagination<Order, object>(query, new { },pageSize, pageNumber);
+            return result.Items;
         }
     }
 }

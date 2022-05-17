@@ -12,7 +12,7 @@ using SistemaApp.Core.Data;
 namespace SistemaApp.Core.Migrations
 {
     [DbContext(typeof(SistemaAppDbContext))]
-    [Migration("20220516180430_SeedData")]
+    [Migration("20220517132305_SeedData")]
     partial class SeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

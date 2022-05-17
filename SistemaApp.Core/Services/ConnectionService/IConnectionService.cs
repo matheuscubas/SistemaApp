@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace DesafioDesafiante.Services
+namespace SistemaApp.Core.Services.ConnectionService
 {
     public interface IConnectionService
     {

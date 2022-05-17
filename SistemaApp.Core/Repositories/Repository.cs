@@ -28,7 +28,7 @@ namespace SistemaApp.Core.Repositories
         {
             throw new NotImplementedException();
         }
-        public virtual IEnumerable<T> GetPaginated()
+        public virtual async Task<IEnumerable<T>> GetPaginated(int pageSize, int pageNumber)
         {
             throw new NotImplementedException();
         }

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.Data;
 
-namespace DesafioDesafiante.Services
+namespace SistemaApp.Core.Services.ConnectionService
 {
     public class ConnectionService : IConnectionService
     {

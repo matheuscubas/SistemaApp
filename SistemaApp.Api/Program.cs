@@ -1,8 +1,7 @@
-using DesafioDesafiante.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SistemaApp.Core.Data;
-//using SistemaApp.Core.Extensions;
+using SistemaApp.Core.Services.ConnectionService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,13 +24,7 @@ builder.Services.AddDbContext<SistemaAppDbContext>(x => x
     .GetConnectionString("DefaultConnection")!
     ));
 builder.Services.AddScoped<ConnectionService>();
-
 //builder.Services.AddHandlerSeeder();
-
-//Regra para ver se o banco está vazio
-//if(DbSet<T>.Any())
-//chamar o CsvReader pra gerar o Csv
-//chamar o seed u
 
 var app = builder.Build();
 
