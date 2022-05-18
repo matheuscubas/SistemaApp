@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
 using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
@@ -28,6 +29,18 @@ namespace SistemaApp.Api.Controllers
         {
             var result = new ResultViewModel<OrderWithNamesDto>();
             //adicionar validações do model
+            var validator = new CreateOrderViewModelValidator();
+            var validatorResult = validator.Validate(model);
+
+            if (!validatorResult.IsValid)
+            {
+                result.Errors.Add("An order cannot have null propertys!");
+                var errors = validatorResult.Errors;
+                foreach (var error in errors)
+                    result.Errors.Add(error.ToString());
+                return BadRequest(result);
+            }
+
             var dto = new CreateOrderDto()
             {
                 CustomerId = model.CustomerId,

@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Microsoft.EntityFrameworkCore;
 using SistemaApp.Api.ViewModels;
 using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
@@ -99,9 +98,9 @@ namespace SistemaApp.Core.Repositories
         {
             var query = @"
                         SELECT 
-                        [Orders].* 
+                            * 
                         FROM
-                        Orders";
+                            Orders";
 
             var connection = _connection.Connection();
 
