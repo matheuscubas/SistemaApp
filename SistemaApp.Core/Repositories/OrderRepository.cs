@@ -18,7 +18,7 @@ namespace SistemaApp.Core.Repositories
             _connection = connection;
         }
 
-        public void Create(CreateOrderDto dto, SistemaAppDbContext _context)
+        public int Create(CreateOrderDto dto, SistemaAppDbContext _context)
         {
             var shipper = _context.Shippers.FirstOrDefault(x => x.Id == dto.ShipperId);
             var customer = _context.Customers.FirstOrDefault(x => x.Id == dto.CustomerId);
@@ -46,6 +46,7 @@ namespace SistemaApp.Core.Repositories
             _context.Orders.Add(order);
             _context.OrderDetails.Add(orderdetail);
             _context.SaveChanges();
+            return order.Id;
         }
 
         public override IEnumerable<OrderWithNamesDto> GetAll()

@@ -13,17 +13,20 @@ namespace SistemaApp.Api.Controllers
     {
         private readonly OrderRepository _repository;
         private readonly SistemaAppDbContext _context;
+        private readonly ILogger<OrderController> _logger;
 
-        public OrderController(OrderRepository repository, SistemaAppDbContext context)
+        public OrderController(OrderRepository repository, SistemaAppDbContext context, ILogger<OrderController> logger)
         {
             _repository = repository;
             _context = context;
+            _logger = logger;
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult<Order>> CreateOrder(
+        public async Task<ActionResult<ResultViewModel<OrderWithNamesDto>>> CreateOrder(
             [FromBody] CreateOrderViewModel model)
         {
+            var result = new ResultViewModel<OrderWithNamesDto>();
             //adicionar validações do model
             var dto = new CreateOrderDto()
             {
@@ -34,8 +37,23 @@ namespace SistemaApp.Api.Controllers
                 Quantity = model.Quantity
             };
 
-            _repository.Create(dto, _context);
-            return Ok();
+            try
+            {
+                var orderId = _repository.Create(dto, _context);
+                var orderResult = _repository.GetById(orderId).First();
+
+                result.Sucess = true;
+                result.Data = orderResult;
+
+                _logger.LogInformation($"{orderId}");
+                _logger.LogInformation($"Your Order has been placed succesfully!");
+            }
+            catch(Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
 
 
