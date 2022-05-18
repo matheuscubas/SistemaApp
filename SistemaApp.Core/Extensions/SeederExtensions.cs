@@ -8,9 +8,6 @@ namespace SistemaApp.Core.Extensions
 {
     public static class SeederExtensions
     {
-
-        //Possivel solução para o Seeder?
-        //Mesmo tendo que rodar reflection 2x só vai ser usado se o banco não estiver populado no launch
         public static IServiceCollection AddHandlerSeeder(this IServiceCollection collection)
         {
             var serviceProvider = collection.BuildServiceProvider();

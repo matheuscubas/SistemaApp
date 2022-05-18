@@ -15,7 +15,7 @@ namespace SistemaApp.Core.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public void Create(T model)
+        public virtual void Create(T model)
             => _dbSet.Add(model);
 
 
@@ -33,19 +33,19 @@ namespace SistemaApp.Core.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(T model)
+        public virtual void Update(T model)
         {
             _dbSet.Attach(model);
             _context.Entry(model).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             var deleteModel = _dbSet.Find(id);
             Delete(deleteModel);
         }
 
-        public void Delete(T model)
+        public virtual void Delete(T model)
         {
             if(_context.Entry(model).State == EntityState.Detached)
             {
