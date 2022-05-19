@@ -5,6 +5,8 @@ using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
+using System.ComponentModel;
+using Logger = Serilog.ILogger;
 
 namespace SistemaApp.Api.Controllers
 {
@@ -14,9 +16,9 @@ namespace SistemaApp.Api.Controllers
     {
         private readonly OrderRepository _repository;
         private readonly SistemaAppDbContext _context;
-        private readonly ILogger<OrderController> _logger;
+        private readonly Logger _logger;
 
-        public OrderController(OrderRepository repository, SistemaAppDbContext context, ILogger<OrderController> logger)
+        public OrderController(OrderRepository repository, SistemaAppDbContext context, Logger logger)
         {
             _repository = repository;
             _context = context;
@@ -28,16 +30,16 @@ namespace SistemaApp.Api.Controllers
             [FromBody] CreateOrderViewModel model)
         {
             var result = new ResultViewModel<OrderWithNamesDto>();
-            //adicionar validações do model
             var validator = new CreateOrderViewModelValidator();
-            var validatorResult = validator.Validate(model);
+            var validatorResult = await validator.ValidateAsync(model);
 
             if (!validatorResult.IsValid)
             {
                 result.Errors.Add("An order cannot have null propertys!");
                 var errors = validatorResult.Errors;
+                _logger.Information(errors.First().ErrorMessage);
                 foreach (var error in errors)
-                    result.Errors.Add(error.ToString());
+                    result.Errors.Add(error.ErrorMessage);
                 return BadRequest(result);
             }
 
@@ -52,18 +54,19 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-                var orderId = _repository.Create(dto, _context);
-                var orderResult = _repository.GetById(orderId).First();
+                var orderId = _repository.Create(dto);
+                var orderResult = await _repository.GetByIdAsync(orderId);
 
                 result.Sucess = true;
-                result.Data = orderResult;
+                result.Data = orderResult.First();
 
-                _logger.LogInformation($"{orderId}");
-                _logger.LogInformation($"Your Order has been placed succesfully!");
+
+                _logger.Information($"Your Order has been placed succesfully!");
             }
             catch(Exception ex)
             {
                 result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
                 return BadRequest(result);
             }
             return Ok(result);
@@ -71,49 +74,124 @@ namespace SistemaApp.Api.Controllers
 
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<ResultViewModel<IEnumerable<OrderWithNamesDto>>>> GetOrder(int id)
         {
-            var order = _repository.GetById(id);
+            var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
 
-            return Ok(order);
+            if(id < 1)
+            {
+                result.Data = null;
+                result.Errors.Add($"The Id value must be grater than 0.");
+                _logger.Warning("Id value must be grater than 0.");
+                return BadRequest(result);
+            }
+
+            try
+            {
+                var orders = await _repository.GetByIdAsync(id);
+                if (!orders.Any())
+                {
+                    result.Data = null;
+                    result.Errors.Add($"The Order with id {id} does not correspond to an active Order, please try again.");
+                    return BadRequest(result);
+                }
+                result.Data = orders;
+                result.Sucess = true;
+
+            }
+            catch(Exception ex)
+            {
+                if (!result.Data.Any())
+                    result.Errors.Add(ex.Message);
+                    result.Errors.Add($"The Order with id {id} does not correspond to an active Order, please try again.");
+                    return BadRequest(result);
+            }
+            return Ok(result);
         }
         
         [HttpGet("[action]")]
         public async Task<ActionResult<IEnumerable<OrderWithNamesDto>>> GetAllOrders()
         {
-            var orders = _repository.GetAll();
+            var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
 
-            return Ok(orders);
+            try
+            {
+                var orders = _repository.GetAll();
+                result.Data = orders;
+                result.Sucess = true;
+                _logger.Information($"returning {orders.Count()}");
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                result.Errors.Add("Something went wrong, please try again latter.");
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+            return Ok(result);
         }
 
 
         //Não ta funfando tentar arrumar depois
         [HttpGet("[action]")]
         public async Task<ActionResult<IEnumerable<Order>>> GetPaginatedOrders(
-            int pageSize, 
-            int pageNumber)
+            [FromQuery]int pageSize = 5, 
+            [FromQuery]int pageNumber = 1)
         {
-            var paginatedOrders = _repository.GetPaginated(pageSize, pageNumber);
+            if(pageSize < 1 || pageNumber < 1)
+            {
+                _logger.Information("The pageNumber and pageSize must be grater than 0.");
+                return BadRequest("The pageNumber and pageSize must be grater than 0.");
+            }
+
+            var paginatedOrders = await _repository.GetPaginated(pageSize, pageNumber);
 
             return Ok(paginatedOrders);
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult<Order>> UpdateOrder([FromBody] Order model)
+        public async Task<ActionResult<ResultViewModel<Order>>> UpdateOrder([FromBody]  UpdateOrderDto model)
         {
+            var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
             //Adicionar validações pra checar se o model é valido
+            var validator = new UpdateOrderDtoValidator();
+            var validationResult = validator.Validate(model);
 
-            _repository.Update(model);
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors;
+                foreach (var error in errors)
+                {
+                    _logger.Information(error.ToString());
+                    result.Errors.Add(error.ToString());
+                }
+                return BadRequest(result);
+            }
 
-            return Ok();
+            await _repository.UpdateAsync(model);
+            _logger.Information($"The order {model.OrderId} has been update successfully!");
+            result.Data = await _repository.GetByIdAsync(model.OrderId);
+            result.Sucess = true;
+
+            return Ok(result);
         }
         
         [HttpDelete("[action]")]
-        public async Task<ActionResult> DeleteOrder([FromBody] int id)
+        public async Task<ActionResult> DeleteOrder(int id)
         {
-            _repository.Delete(id);
+            var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
+            var order = await _repository.GetByIdAsync(id);
 
-            return Ok();
+            if (!order.Any())
+            {
+                result.Errors.Add("Order not found!");
+                return BadRequest(result);
+            }
+
+            result.Data = order;
+            result.Sucess = true;
+            await _repository.DeleteAsync(id);
+
+            return Ok(result);
         }
     }
 }

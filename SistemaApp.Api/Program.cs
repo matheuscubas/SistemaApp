@@ -4,6 +4,7 @@ using SistemaApp.Core.Data;
 using SistemaApp.Core.Extensions;
 using SistemaApp.Core.Repositories;
 using SistemaApp.Core.Services.ConnectionService;
+using Logger = Serilog.ILogger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<SistemaAppDbContext>(x => x
     ));
 builder.Services.AddScoped<ConnectionService>();
 builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddSingleton<Logger>(logger);
 
 //builder.Services.AddHandlerSeeder();
 

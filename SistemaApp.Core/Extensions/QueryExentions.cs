@@ -21,7 +21,7 @@ namespace SistemaApp.Core.Extensions
             quantidadItensBuilder.Length = 0;
 
             dynamic paginatedParams = new ExpandoObject();
-            var dictionary = (IDictionary<string, object>)paginatedParams;
+            var dictionary = paginatedParams as IDictionary<string, object>;
             foreach (var property in parameters.GetType().GetProperties())
             {
                 dictionary.Add(property.Name, property.GetValue(parameters));
@@ -56,7 +56,7 @@ namespace SistemaApp.Core.Extensions
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 HasNextPage = pageNumber <= pageCount,
-                HasPreviousPage = pageNumber < 0,
+                HasPreviousPage = pageNumber > 1,
                 IsFirstPage = pageNumber == 1,
                 TotalItemCount = resultSet.Count,
                 FirstItemOnPage = firstItem,
