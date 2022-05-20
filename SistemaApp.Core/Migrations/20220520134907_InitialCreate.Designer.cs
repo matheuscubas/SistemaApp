@@ -12,15 +12,14 @@ using SistemaApp.Core.Data;
 namespace SistemaApp.Core.Migrations
 {
     [DbContext(typeof(SistemaAppDbContext))]
-    [Migration("20220513125449_InitialCreate")]
+    [Migration("20220520134907_InitialCreate")]
     partial class InitialCreate
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-preview.4.22229.2")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -286,19 +285,19 @@ namespace SistemaApp.Core.Migrations
                     b.HasOne("SistemaApp.Core.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SistemaApp.Core.Models.Employee", "Employee")
                         .WithMany("Orders")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SistemaApp.Core.Models.Shipper", "Shipper")
                         .WithMany()
                         .HasForeignKey("ShipperId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -311,9 +310,9 @@ namespace SistemaApp.Core.Migrations
             modelBuilder.Entity("SistemaApp.Core.Models.OrderDetail", b =>
                 {
                     b.HasOne("SistemaApp.Core.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrdersDetails")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SistemaApp.Core.Models.Product", "Product")
@@ -359,6 +358,11 @@ namespace SistemaApp.Core.Migrations
             modelBuilder.Entity("SistemaApp.Core.Models.Employee", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("SistemaApp.Core.Models.Order", b =>
+                {
+                    b.Navigation("OrdersDetails");
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Supplier", b =>

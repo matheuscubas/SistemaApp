@@ -25,11 +25,11 @@ namespace SistemaApp.Core.Data.Mappings
             builder.Property(x => x.EmployeeId)
                 .HasDefaultValue(null);
 
-            //CustomerId
+            //OrderDate
             builder.Property(x => x.OrderDate)
                 .HasDefaultValue(null);
 
-            //CustomerId
+            //ShipperId
             builder.Property(x => x.ShipperId)
                 .HasDefaultValue(null);
 
@@ -37,24 +37,32 @@ namespace SistemaApp.Core.Data.Mappings
             builder.HasOne(x => x.Customer)
                 .WithMany(x => x.Orders)
                 .HasForeignKey(x => x.CustomerId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
 
             builder.HasOne(x => x.Employee)
                 .WithMany(x => x.Orders)
                 .HasForeignKey(x => x.EmployeeId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
 
             builder.HasOne(x => x.Shipper)
                 .WithMany()
                 .HasForeignKey(x => x.ShipperId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
+
+            builder.HasMany(x => x.OrdersDetails)
+                .WithOne(x => x.Order)
+                .HasForeignKey(x => x.OrderId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
+
 
             builder.Navigation(x => x.Customer);
             builder.Navigation(x => x.Employee);
             builder.Navigation(x => x.Shipper);
+            builder.Navigation(x => x.OrdersDetails);
         }
     }
 }

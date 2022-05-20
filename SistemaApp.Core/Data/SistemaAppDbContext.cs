@@ -15,6 +15,25 @@ namespace SistemaApp.Core.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            var categorySeeder = new CategorySeeder();
+            var customerSeeder = new CustomerSeeder();
+            var employeeSeeder = new EmployeeSeeder();
+            var orderDetailSeeder = new OrderDetailSeeder();
+            var orderSeeder = new OrderSeeder();
+            var productSeeder = new ProductSeeder();
+            var shipperSeeder = new ShipperSeeder();
+            var supplierSeeder = new SupplierSeeder();
+
+
+            categorySeeder.SeedData(modelBuilder);
+            customerSeeder.SeedData(modelBuilder);
+            employeeSeeder.SeedData(modelBuilder);
+            shipperSeeder.SeedData(modelBuilder);
+            supplierSeeder.SeedData(modelBuilder);
+            productSeeder.SeedData(modelBuilder);
+            orderSeeder.SeedData(modelBuilder);
+            orderDetailSeeder.SeedData(modelBuilder);
         }
 
         public DbSet<Category> Categories { get; set; }

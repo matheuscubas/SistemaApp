@@ -7571,19 +7571,19 @@ namespace SistemaApp.Core.Migrations
                     b.HasOne("SistemaApp.Core.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SistemaApp.Core.Models.Employee", "Employee")
                         .WithMany("Orders")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SistemaApp.Core.Models.Shipper", "Shipper")
                         .WithMany()
                         .HasForeignKey("ShipperId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -7596,9 +7596,9 @@ namespace SistemaApp.Core.Migrations
             modelBuilder.Entity("SistemaApp.Core.Models.OrderDetail", b =>
                 {
                     b.HasOne("SistemaApp.Core.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrdersDetails")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SistemaApp.Core.Models.Product", "Product")
@@ -7644,6 +7644,11 @@ namespace SistemaApp.Core.Migrations
             modelBuilder.Entity("SistemaApp.Core.Models.Employee", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("SistemaApp.Core.Models.Order", b =>
+                {
+                    b.Navigation("OrdersDetails");
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Supplier", b =>

@@ -11,5 +11,6 @@ namespace SistemaApp.Core.Data.Seed
 
         //Transformar em um task para poder realizar de forma Assincrona dps.
         public void SeedData(SistemaAppDbContext context);
+        public void SeedData(ModelBuilder modelBuilder);
     }
 }

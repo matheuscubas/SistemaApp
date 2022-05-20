@@ -20,6 +20,8 @@ namespace SistemaApp.Core.Models
         public DateTime OrderDate { get; set; }
 
         [Ignore]
+        public ICollection<OrderDetail> OrdersDetails { get; set; }
+        [Ignore]
         public Customer Customer { get; set; }
         [Ignore]
         public Employee Employee { get; set; }

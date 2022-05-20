@@ -132,9 +132,8 @@ namespace SistemaApp.Core.Repositories
 
         public async Task DeleteAsync(int id)
         {
-            //var order = await GetById(id);
-
-            var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
+            var order = await GetById(id);
+            _context.Attach(order);
             _context.Orders.Remove(order);
             _context.SaveChanges();
         }

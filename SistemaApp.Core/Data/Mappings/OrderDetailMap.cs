@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaApp.Core.Models;
-using System.Security.Cryptography.X509Certificates;
 
 namespace SistemaApp.Core.Data.Mappings
 {
@@ -32,9 +31,9 @@ namespace SistemaApp.Core.Data.Mappings
 
             //Relations
             builder.HasOne(x => x.Order)
-                .WithMany()
+                .WithMany(x => x.OrdersDetails)
                 .HasForeignKey(x => x.OrderId)
-                .OnDelete(DeleteBehavior.NoAction)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
             builder.HasOne(x => x.Product)
