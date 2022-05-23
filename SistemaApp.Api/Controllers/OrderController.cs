@@ -5,7 +5,6 @@ using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
-using System.ComponentModel;
 using Logger = Serilog.ILogger;
 
 namespace SistemaApp.Api.Controllers

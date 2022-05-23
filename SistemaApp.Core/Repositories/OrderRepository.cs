@@ -6,7 +6,6 @@ using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Extensions;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Services.ConnectionService;
-using System.Security.Cryptography.X509Certificates;
 
 namespace SistemaApp.Core.Repositories
 {

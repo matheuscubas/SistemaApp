@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using SistemaApp.Core.Data;
-using SistemaApp.Core.Extensions;
 using SistemaApp.Core.Repositories;
 using SistemaApp.Core.Services.ConnectionService;
+using SistemaApp.Core.Services.PasswordService;
+using SistemaApp.Core.Services.TokenService;
+using System.Text;
 using Logger = Serilog.ILogger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +32,10 @@ builder.Services.AddDbContext<SistemaAppDbContext>(x => x
     ));
 builder.Services.AddScoped<ConnectionService>();
 builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddTransient<TokenService>();
+builder.Services.AddScoped<PasswordService>();
 builder.Services.AddSingleton<Logger>(logger);
+AuthConfiguration(builder);
 
 //builder.Services.AddHandlerSeeder();
 
@@ -42,9 +49,28 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+void AuthConfiguration(WebApplicationBuilder builder)
+{
+    var key = Encoding.ASCII.GetBytes("ZmVkYWY3ZDg4NjNiNDhlMTk3YjkyODdkNDkyYjcwOGU=");
+    builder.Services.AddAuthentication(x =>
+    {
+        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    }).AddJwtBearer(x =>
+    {
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+}

@@ -24,6 +24,8 @@ namespace SistemaApp.Core.Data
             var productSeeder = new ProductSeeder();
             var shipperSeeder = new ShipperSeeder();
             var supplierSeeder = new SupplierSeeder();
+            var roleSeeder = new RoleSeeder();
+            var userSeeder = new UserSeeder();
 
 
             categorySeeder.SeedData(modelBuilder);
@@ -34,6 +36,8 @@ namespace SistemaApp.Core.Data
             productSeeder.SeedData(modelBuilder);
             orderSeeder.SeedData(modelBuilder);
             orderDetailSeeder.SeedData(modelBuilder);
+            roleSeeder.SeedData(modelBuilder);
+            userSeeder.SeedData(modelBuilder);
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -44,5 +48,7 @@ namespace SistemaApp.Core.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Shipper> Shippers { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 }
