@@ -14,6 +14,6 @@ namespace SistemaApp.Core.Models
         public string Description { get; set; }
 
         [Ignore]
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Product>? Products { get; set; }
     }
 }

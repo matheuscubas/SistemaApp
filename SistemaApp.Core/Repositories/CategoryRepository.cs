@@ -20,6 +20,15 @@ namespace SistemaApp.Core.Repositories
             _connection = connection;
         }
 
+        public async Task<Category> CreateCategory(Category category)
+        {
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
+            var newCategory = _context.Categories.Attach(category);
+
+            return newCategory.Entity;
+        }
+
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
             using var connection = _connection.Connection();

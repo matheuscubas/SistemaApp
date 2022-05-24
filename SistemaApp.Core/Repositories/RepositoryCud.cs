@@ -22,12 +22,14 @@ namespace SistemaApp.Core.Repositories
         {
             _dbSet.Attach(model);
             _context.Entry(model).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public virtual void DeleteAsync(int id)
         {
             var deleteModel = _dbSet.Find(id);
             Delete(deleteModel);
+            _context.SaveChanges();
         }
 
         public virtual void Delete(T model)
