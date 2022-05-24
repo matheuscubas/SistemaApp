@@ -24,6 +24,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<SistemaAppDbContext>(x => x
 .UseSqlServer(
     builder
@@ -36,6 +37,7 @@ builder.Services.AddScoped<PasswordService>();
 builder.Services.AddSingleton<Logger>(logger);
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<CategoryRepository>();
 AuthConfiguration(builder);
 
 //builder.Services.AddHandlerSeeder();

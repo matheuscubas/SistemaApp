@@ -32,4 +32,8 @@
     <ProjectReference Include="..\SistemaApp.Core\SistemaApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+
 </Project>

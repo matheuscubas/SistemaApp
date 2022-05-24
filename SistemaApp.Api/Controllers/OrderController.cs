@@ -88,7 +88,6 @@ namespace SistemaApp.Api.Controllers
                 var orders = await _repository.GetByIdAsync(id);
                 if (!orders.Any())
                 {
-                    result.Data = null;
                     result.Errors.Add($"The Order with id {id} does not correspond to an active Order, please try again.");
                     return BadRequest(result);
                 }
@@ -128,19 +127,24 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<IEnumerable<Order>>> GetPaginatedOrders(
+        public async Task<ActionResult<PaginationResult<Order>>> GetPaginatedOrders(
             [FromQuery]int pageSize = 5, 
             [FromQuery]int pageNumber = 1)
         {
-            if(pageSize < 1 || pageNumber < 1)
+            var result = new ResultViewModel<PaginationResult<OrderWithNamesDto>>();
+
+            if (pageSize < 1 || pageNumber < 1)
             {
+                result.Errors.Add("The pageNumber and pageSize must be grater than 0.");
                 _logger.Information("The pageNumber and pageSize must be grater than 0.");
-                return BadRequest("The pageNumber and pageSize must be grater than 0.");
+                return BadRequest(result);
             }
 
             var paginatedOrders = await _repository.GetPaginated(pageSize, pageNumber);
+            result.Data = paginatedOrders;
+            result.Sucess = true;
 
-            return Ok(paginatedOrders);
+            return Ok(result);
         }
 
         [HttpPut("[action]")]
