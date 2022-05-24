@@ -31,10 +31,11 @@ builder.Services.AddDbContext<SistemaAppDbContext>(x => x
     .GetConnectionString("DefaultConnection")!
     ));
 builder.Services.AddScoped<ConnectionService>();
-builder.Services.AddScoped<OrderRepository>();
-builder.Services.AddTransient<TokenService>();
+builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddSingleton<Logger>(logger);
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<OrderRepository>();
 AuthConfiguration(builder);
 
 //builder.Services.AddHandlerSeeder();
@@ -58,7 +59,7 @@ app.Run();
 
 void AuthConfiguration(WebApplicationBuilder builder)
 {
-    var key = Encoding.ASCII.GetBytes("ZmVkYWY3ZDg4NjNiNDhlMTk3YjkyODdkNDkyYjcwOGU=");
+    var key = Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("Secrets:JwtKeySecret"));
     builder.Services.AddAuthentication(x =>
     {
         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

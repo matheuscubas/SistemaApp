@@ -33,7 +33,7 @@ namespace SistemaApp.Core.Repositories
             _connection = connection;
         }
 
-        public int Create(CreateOrderDto dto)
+        public async Task<int> CreateAsync(CreateOrderDto dto)
         {
             var order = new Order()
             {
@@ -50,21 +50,21 @@ namespace SistemaApp.Core.Repositories
                 Quantity = dto.Quantity,
             };
 
-            _context.Orders.Add(order);
-            _context.OrderDetails.Add(orderdetail);
-            _context.SaveChanges();
+            await _context.Orders.AddAsync(order);
+            await _context.OrderDetails.AddAsync(orderdetail);
+            await _context.SaveChangesAsync();
             return order.Id;
         }
 
-        public IEnumerable<OrderWithNamesDto> GetAll()
+        public async Task<IEnumerable<OrderWithNamesDto>> GetAllAsync()
         {
             using var connection = _connection.Connection();
-            var orders = connection.Query<OrderWithNamesDto>(GetAllQueryOrdersWithNames);
+            var orders = await connection.QueryAsync<OrderWithNamesDto>(GetAllQueryOrdersWithNames);
 
             return orders;
         }
 
-        public async Task<IEnumerable<OrderWithNamesDto>> GetByIdAsync(int id)
+        public async Task<IEnumerable<OrderWithNamesDto?>> GetByIdAsync(int id)
         {
             var query = @"
                         SELECT Orders.OrderId AS Id,
@@ -88,10 +88,14 @@ namespace SistemaApp.Core.Repositories
             return orders;
         }
 
-        public async Task<Order> GetById(int id)
+        public async Task<Order?> GetById(int id)
         {
             var query = @"
-                        SELECT *
+                        SELECT Orders.OrderId AS Id,
+                        Orders.CustomerId AS CustomerId,
+                        Orders.EmployeeId AS EmployeeId,
+                        Orders.ShipperId AS ShipperId,
+                        Orders.OrderDate AS OrderDate
                         FROM Orders
                         WHERE OrderId = @Id";
 
@@ -99,11 +103,6 @@ namespace SistemaApp.Core.Repositories
             var order = await connection.QueryFirstAsync<Order>(query, new { Id = id });
 
             return order;
-        }
-
-        OrderWithNamesDto? IRepositoryRead<OrderWithNamesDto>.GetById(int id)
-        {
-            throw new NotImplementedException();
         }
         public  async Task<PaginationResult<OrderWithNamesDto>> GetPaginated(int pageSize, int pageNumber)
         {
@@ -115,11 +114,20 @@ namespace SistemaApp.Core.Repositories
 
         public async Task UpdateAsync(UpdateOrderDto model)
         {
-            //Trocar pra uma Query com Dapper depois
-            var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == model.OrderId);
-            var orderDetails = await _context
-                .OrderDetails
-                .FirstOrDefaultAsync(x => x.OrderId == order.Id && x.ProductId == model.ProductId);
+            var order = await GetById(model.OrderId);
+            //TODO: quando tiver orderDetail Repository usar metodo get by id aqui.
+            var orderDetailQuery = @"SELECT OrderDetails.OrderDetailId AS Id,
+                                    OrderDetails.OrderId AS OrderId,
+                                    OrderDetails.ProductId AS ProductId,
+                                    OrderDetails.Quantity AS Quantity 
+                                    FROM OrderDetails
+                                    WHERE OrderDetails.OrderId = @OrderId
+                                    AND OrderDetails.ProductId = @ProductId";
+
+            _context.Orders.Attach(order);
+            using var connection = _connection.Connection();
+            var orderDetails = await connection.QueryFirstAsync<OrderDetail>(orderDetailQuery, new { OrderId = model.OrderId, ProductId = model.ProductId });
+            _context.OrderDetails.Attach(orderDetails);
 
             order.ShipperId = model.ShipperId;
             orderDetails.Quantity = model.Quantity;
@@ -135,6 +143,11 @@ namespace SistemaApp.Core.Repositories
             _context.Attach(order);
             _context.Orders.Remove(order);
             _context.SaveChanges();
+        }
+
+        Task<OrderWithNamesDto?> IRepositoryRead<OrderWithNamesDto>.GetById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

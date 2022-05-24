@@ -4,7 +4,7 @@ namespace SistemaApp.Core.Services.PasswordService
 {
     using BCrypt.Net;
 
-    public class PasswordService
+    public class PasswordService : IPasswordService
     {
         public string GeneratePassword()
         {

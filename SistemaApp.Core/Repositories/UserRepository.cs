@@ -17,20 +17,6 @@ namespace SistemaApp.Core.Repositories
             _connection = connection;
             _passwordService = passwordService;
         }
-        public IEnumerable<User> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public User? GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<PaginationResult<User>> GetPaginated(int pageSize, int pageNumber)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<UserWithRole> GetUserAsync(string username)
         {
@@ -45,10 +31,10 @@ namespace SistemaApp.Core.Repositories
                         INNER JOIN Roles
                         ON Users.RoleId = Roles.Id
                         WHERE
-                        Users.Username = 'Matheus';";
+                        Users.Username = @Username";
 
             using var connection = _connection.Connection();
-            var user = await connection.QueryFirstOrDefaultAsync<UserWithRole>(query, new { @Username = username });
+            var user = await connection.QueryFirstOrDefaultAsync<UserWithRole>(query, new { Username = username });
 
             return user;
         }
@@ -68,6 +54,21 @@ namespace SistemaApp.Core.Repositories
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
             return user;
+        }
+
+        public Task<IEnumerable<User>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<User?> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PaginationResult<User>> GetPaginated(int pageSize, int pageNumber)
+        {
+            throw new NotImplementedException();
         }
     }
 }

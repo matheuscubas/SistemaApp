@@ -53,12 +53,11 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-                var orderId = _repository.Create(dto);
+                var orderId = await _repository.CreateAsync(dto);
                 var orderResult = await _repository.GetByIdAsync(orderId);
 
                 result.Sucess = true;
                 result.Data = orderResult.First();
-
 
                 _logger.Information($"Your Order has been placed succesfully!");
             }
@@ -79,7 +78,6 @@ namespace SistemaApp.Api.Controllers
 
             if(id < 1)
             {
-                result.Data = null;
                 result.Errors.Add($"The Id value must be grater than 0.");
                 _logger.Warning("Id value must be grater than 0.");
                 return BadRequest(result);
@@ -115,7 +113,7 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-                var orders = _repository.GetAll();
+                var orders = await _repository.GetAllAsync();
                 result.Data = orders;
                 result.Sucess = true;
                 _logger.Information($"returning {orders.Count()}");
@@ -129,8 +127,6 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-
-        //Não ta funfando tentar arrumar depois
         [HttpGet("[action]")]
         public async Task<ActionResult<IEnumerable<Order>>> GetPaginatedOrders(
             [FromQuery]int pageSize = 5, 
@@ -151,7 +147,6 @@ namespace SistemaApp.Api.Controllers
         public async Task<ActionResult<ResultViewModel<Order>>> UpdateOrder([FromBody]  UpdateOrderDto model)
         {
             var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
-            //Adicionar validações pra checar se o model é valido
             var validator = new UpdateOrderDtoValidator();
             var validationResult = validator.Validate(model);
 

@@ -23,13 +23,19 @@ namespace SistemaApp.Api.Controllers
         private readonly UserRepository _repository;
         private readonly Logger _logger;
 
-        public UserController(TokenService tokenService, SistemaAppDbContext context, PasswordService passwordService, ConnectionService connection, Logger logger)
+        public UserController(
+            TokenService tokenService, 
+            SistemaAppDbContext context, 
+            PasswordService passwordService, 
+            ConnectionService connection, 
+            Logger logger,
+            UserRepository repository)
         {
             _tokenService = tokenService;
             _context = context;
             _passwordService = passwordService;
             _connection = connection;
-            _repository = new UserRepository(_context, _connection, _passwordService);
+            _repository = repository;
             _logger = logger;
         }
 
