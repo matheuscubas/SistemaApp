@@ -168,9 +168,32 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpDelete("[action]")]
-        public async Task<ActionResult<ResultViewModel<Customer>>> DeleteCustomer()
+        public async Task<ActionResult<ResultViewModel<Employee>>> DeleteCustomer(int id)
         {
-            return Ok();
+            var result = new ResultViewModel<Employee>();
+
+            if (id < 1)
+            {
+                result.Errors.Add($"The Id value must be grater than 0.");
+                _logger.Warning("Id value must be grater than 0.");
+                return BadRequest(result);
+            }
+
+            try
+            {
+                result.Data = await _repository.GetById(id);
+                _repository.DeleteAsync(id);
+                result.Sucess = true;
+                _logger.Information($"The Category {result.Data.FirstName} was deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                result.Data = null;
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
     }
 }
