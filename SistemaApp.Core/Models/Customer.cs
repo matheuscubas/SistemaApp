@@ -26,6 +26,6 @@ namespace SistemaApp.Core.Models
         public string Country { get; set; }
 
         [Ignore]
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }
