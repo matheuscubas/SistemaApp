@@ -134,9 +134,37 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult<ResultViewModel<Customer>>> UpdateCustomer()
+        public async Task<ActionResult<ResultViewModel<Employee>>> UpdateCustomer([FromBody] Employee model)
         {
-            return Ok();
+            var result = new ResultViewModel<Employee>();
+            var validator = new UpdateEmployeeValidator();
+            var validationResult = await validator.ValidateAsync(model);
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                {
+                    _logger.Information(error.ToString());
+                    result.Errors.Add(error.ToString());
+                }
+                return BadRequest(result);
+            }
+
+            try
+            {
+                _repository.Update(model);
+                _logger.Information($"Customer {model.FirstName} updated successfully.");
+                result.Data = await _repository.GetById((int)model.Id);
+                result.Sucess = true;
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete("[action]")]
