@@ -153,7 +153,7 @@ namespace SistemaApp.Api.Controllers
             try
             {
                 _repository.Update(model);
-                _logger.Information($"Customer {model.FirstName} updated successfully.");
+                _logger.Information($"Employee {model.FirstName} updated successfully.");
                 result.Data = await _repository.GetById((int)model.Id);
                 result.Sucess = true;
             }
@@ -184,7 +184,7 @@ namespace SistemaApp.Api.Controllers
                 result.Data = await _repository.GetById(id);
                 _repository.DeleteAsync(id);
                 result.Sucess = true;
-                _logger.Information($"The Category {result.Data.FirstName} was deleted successfully.");
+                _logger.Information($"The Employee {result.Data.FirstName} was deleted successfully.");
             }
             catch (Exception ex)
             {
