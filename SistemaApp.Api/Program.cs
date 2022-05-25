@@ -1,48 +1,8 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Serilog;
-using SistemaApp.Core.Data;
-using SistemaApp.Core.Extensions;
-using SistemaApp.Core.Repositories;
-using SistemaApp.Core.Services.ConnectionService;
-using SistemaApp.Core.Services.PasswordService;
-using SistemaApp.Core.Services.TokenService;
-using System.Text;
-using Logger = Serilog.ILogger;
+using SistemaApp.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .CreateLogger();
-
-builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<SistemaAppDbContext>(x => x
-.UseSqlServer(
-    builder
-    .Configuration
-    .GetConnectionString("DefaultConnection")!
-    ));
-builder.Services.AddScoped<ConnectionService>();
-builder.Services.AddScoped<TokenService>();
-builder.Services.AddScoped<PasswordService>();
-builder.Services.AddSingleton<Logger>(logger);
-builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<OrderRepository>();
-builder.Services.AddScoped<CategoryRepository>();
-builder.Services.AddScoped<CustomerRepository>();
-AuthConfiguration(builder);
-
-builder.Services.AddHandlerSeeder();
+builder.AddServices();
 
 var app = builder.Build();
 
@@ -60,22 +20,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-void AuthConfiguration(WebApplicationBuilder builder)
-{
-    var key = Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("Secrets:JwtKeySecret"));
-    builder.Services.AddAuthentication(x =>
-    {
-        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    }).AddJwtBearer(x =>
-    {
-        x.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = false,
-            ValidateAudience = false
-        };
-    });
-}

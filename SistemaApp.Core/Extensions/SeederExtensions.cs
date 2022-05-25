@@ -15,8 +15,6 @@ namespace SistemaApp.Core.Extensions
 
             var sets = context?.GetDbSetProperties();
 
-
-
             if (sets is not null)
             {
                 foreach (var set in sets)
@@ -41,7 +39,6 @@ namespace SistemaApp.Core.Extensions
                 .Select(x => Activator.CreateInstance(x))
                 .Cast<ISeeder<T>>()
                 .First();
-
 
             if (!context.Set<T>().Any())
             {

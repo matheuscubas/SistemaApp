@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaApp.Api.ViewModels;
 using SistemaApp.Core.Data;
+using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
 using Logger = Serilog.ILogger;
@@ -23,7 +24,7 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult<ResultViewModel<Customer>>> CreateCustomer()
+        public async Task<ActionResult<ResultViewModel<Customer>>> CreateCustomer([FromBody] CreateCustomerDto model)
         {
             return Ok();
         }

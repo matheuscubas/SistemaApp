@@ -38,8 +38,12 @@ namespace SistemaApp.Core.Data.Seed
                     } 
                 };
 
+            using var transaction = context.Database.BeginTransaction();
+            var table = context.Model.FindEntityType(typeof(Role)).GetSchemaQualifiedTableName();
             context.Roles.AddRange(roles);
+            context.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT {table} ON");
             context.SaveChanges();
+            transaction.Commit();
         }
     }
 }

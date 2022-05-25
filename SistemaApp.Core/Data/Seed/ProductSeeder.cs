@@ -12,8 +12,12 @@ namespace SistemaApp.Core.Data.Seed
             var csvReader = new CsvReaderService<Product>();
             var products = csvReader.ReadCsv(filePath);
 
+            using var transaction = context.Database.BeginTransaction();
+            var table = context.Model.FindEntityType(typeof(Product)).GetSchemaQualifiedTableName();
             context.Products.AddRange(products);
+            context.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT {table} ON");
             context.SaveChanges();
+            transaction.Commit();
         }
 
         public void SeedData(ModelBuilder modelBuilder)

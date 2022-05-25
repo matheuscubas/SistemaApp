@@ -26,8 +26,12 @@ namespace SistemaApp.Core.Data.Seed
             }
             };
 
+            using var transaction = context.Database.BeginTransaction();
+            var table = context.Model.FindEntityType(typeof(User)).GetSchemaQualifiedTableName();
             context.Users.AddRange(users);
+            context.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT {table} ON");
             context.SaveChanges();
+            transaction.Commit();
         }
 
         public void SeedData(ModelBuilder modelBuilder)
