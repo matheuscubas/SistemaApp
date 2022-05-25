@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
 using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
@@ -26,7 +27,33 @@ namespace SistemaApp.Api.Controllers
         [HttpPost("[action]")]
         public async Task<ActionResult<ResultViewModel<Customer>>> CreateCustomer([FromBody] CreateCustomerDto model)
         {
-            return Ok();
+            var result = new ResultViewModel<Customer>();
+            var validator = new CreateCustomerValidator();
+            var validationResult = await validator.ValidateAsync(model);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors;
+                _logger.Information(errors.First().ErrorMessage);
+                foreach (var error in errors)
+                    result.Errors.Add(error.ToString());
+                return BadRequest(result);
+            }
+
+            try
+            {
+                result.Data = await _repository.CreateCustomerAsync(model);
+                result.Sucess = true;
+                _logger.Information($"Customer {result.Data.Name} created successfully");
+            }
+            catch(Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("[action]")]

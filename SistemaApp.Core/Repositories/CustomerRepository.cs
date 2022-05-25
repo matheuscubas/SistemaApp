@@ -1,5 +1,7 @@
 ﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaApp.Core.Data;
+using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Extensions;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Services.ConnectionService;
@@ -22,6 +24,23 @@ namespace SistemaApp.Core.Repositories
             : base(context)
         {
             _connection = connection;
+        }
+
+        public async Task<Customer?> CreateCustomerAsync(CreateCustomerDto model)
+        {
+            var customer = new Customer
+            {
+                Name = model.Name,
+                ContactName = model.ContactName,
+                Address = model.Address,
+                City = model.City,
+                PostalCode = model.PostalCode,
+                Country = model.Country
+            };
+
+            await _context.Customers.AddAsync(customer);
+            await _context.SaveChangesAsync();
+            return await _context.Customers.FirstOrDefaultAsync(x => x.Name == model.Name && x.ContactName == model.ContactName);
         }
 
         public async Task<IEnumerable<Customer>> GetAllAsync()

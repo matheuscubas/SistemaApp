@@ -88,6 +88,7 @@ namespace SistemaApp.Api.Controllers
                 var orders = await _repository.GetByIdAsync(id);
                 if (!orders.Any())
                 {
+                    _logger.Information($"The Order with id {id} does not correspond to an active Order, please try again.");
                     result.Errors.Add($"The Order with id {id} does not correspond to an active Order, please try again.");
                     return BadRequest(result);
                 }
