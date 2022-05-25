@@ -5,7 +5,7 @@ namespace SistemaApp.Core.Models
     public class Employee
     {
         [Index(0)]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Index(2)]
         public string FirstName { get; set; }
@@ -23,6 +23,6 @@ namespace SistemaApp.Core.Models
         public string Notes { get; set; }
 
         [Ignore]
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }

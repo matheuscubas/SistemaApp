@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
 using SistemaApp.Core.Data;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
-using System.Diagnostics.CodeAnalysis;
 using Logger = Serilog.ILogger;
 
 namespace SistemaApp.Api.Controllers
@@ -24,9 +24,36 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult<ResultViewModel<Employee>>> CreateEmployee()
+        public async Task<ActionResult<ResultViewModel<Employee>>> CreateEmployee([FromBody] Employee model)
         {
-            return Ok();
+            var result = new ResultViewModel<Employee>();
+            var validator = new CreateEmployeeValidator();
+            var validationResult = await validator.ValidateAsync(model);
+
+            if (!validationResult.IsValid)
+            {
+                _logger.Information(validationResult.Errors.First().ToString());
+                foreach (var error in validationResult.Errors)
+                    result.Errors.Add(error.ToString());
+
+                return BadRequest(result);
+            }
+
+            try
+            {
+                _repository.Create(model);
+                _logger.Information($"The Employee {model.FirstName} was created sucessfully");
+                result.Data = model;
+                result.Sucess = true;
+            }
+            catch(Exception ex)
+            {
+                _logger.Warning(ex.Message);
+                result.Errors.Add(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("[action]")]

@@ -16,7 +16,10 @@ namespace SistemaApp.Core.Repositories
         }
 
         public virtual void Create(T model)
-            => _dbSet.Add(model);
+        {
+            _dbSet.Add(model);
+            _context.SaveChanges();
+        }
 
         public virtual void Update(T model)
         {
