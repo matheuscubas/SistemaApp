@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using SistemaApp.Core.Data;
+using SistemaApp.Core.Extensions;
 using SistemaApp.Core.Repositories;
 using SistemaApp.Core.Services.ConnectionService;
 using SistemaApp.Core.Services.PasswordService;
@@ -38,9 +39,10 @@ builder.Services.AddSingleton<Logger>(logger);
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<CustomerRepository>();
 AuthConfiguration(builder);
 
-//builder.Services.AddHandlerSeeder();
+builder.Services.AddHandlerSeeder();
 
 var app = builder.Build();
 

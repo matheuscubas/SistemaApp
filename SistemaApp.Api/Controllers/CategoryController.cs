@@ -16,7 +16,7 @@ namespace SistemaApp.Api.Controllers
         private readonly Logger _logger;
         private readonly CategoryRepository _repository;
 
-        public CategoryController(SistemaAppDbContext context, Serilog.ILogger logger, CategoryRepository repository)
+        public CategoryController(SistemaAppDbContext context, Logger logger, CategoryRepository repository)
         {
             _context = context;
             _logger = logger;
@@ -99,7 +99,7 @@ namespace SistemaApp.Api.Controllers
                 var categories = await _repository.GetAllAsync();
                 result.Data = categories;
                 result.Sucess = true;
-                _logger.Information($"returning {categories.Count()}");
+                _logger.Information($"returning {categories.Count()} categories");
             }
             catch(Exception ex)
             {

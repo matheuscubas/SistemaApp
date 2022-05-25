@@ -78,7 +78,7 @@ namespace SistemaApp.Api.Controllers
 
             if(id < 1)
             {
-                result.Errors.Add($"The Id value must be grater than 0.");
+                result.Errors.Add("The Id value must be grater than 0.");
                 _logger.Warning("Id value must be grater than 0.");
                 return BadRequest(result);
             }

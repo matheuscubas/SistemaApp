@@ -15,13 +15,15 @@ namespace SistemaApp.Core.Extensions
 
             var sets = context?.GetDbSetProperties();
 
+
+
             if (sets is not null)
             {
                 foreach (var set in sets)
                 {
                     MethodInfo? method = typeof(SeederExtensions).GetMethod(nameof(Seed), BindingFlags.NonPublic|BindingFlags.Static);
-                    MethodInfo generic = method.MakeGenericMethod(set.PropertyType.GetGenericArguments().First());
-                    generic.Invoke(set, new object?[] { context });
+                    MethodInfo? generic = method?.MakeGenericMethod(set.PropertyType.GetGenericArguments().First());
+                    generic?.Invoke(set, new object?[] { context });
                 }
             }
 
@@ -33,14 +35,18 @@ namespace SistemaApp.Core.Extensions
         {
             var type = typeof(ISeeder<T>);
 
-            var types = AppDomain.CurrentDomain.GetAssemblies()
+            var seeder = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(x => x.GetTypes())
                 .Where(x => type.IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
                 .Select(x => Activator.CreateInstance(x))
-                .Cast<ISeeder<T>>();
+                .Cast<ISeeder<T>>()
+                .First();
 
-            types.First().SeedData(context);
 
+            if (!context.Set<T>().Any())
+            {
+                seeder.SeedData(context);
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ using SistemaApp.Core.Data;
 namespace SistemaApp.Core.Migrations
 {
     [DbContext(typeof(SistemaAppDbContext))]
-    [Migration("20220520134907_InitialCreate")]
+    [Migration("20220524182828_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -214,6 +214,23 @@ namespace SistemaApp.Core.Migrations
                     b.ToTable("Products", (string)null);
                 });
 
+            modelBuilder.Entity("SistemaApp.Core.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles", (string)null);
+                });
+
             modelBuilder.Entity("SistemaApp.Core.Models.Shipper", b =>
                 {
                     b.Property<int>("Id")
@@ -280,6 +297,32 @@ namespace SistemaApp.Core.Migrations
                     b.ToTable("Suppliers", (string)null);
                 });
 
+            modelBuilder.Entity("SistemaApp.Core.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Users", (string)null);
+                });
+
             modelBuilder.Entity("SistemaApp.Core.Models.Order", b =>
                 {
                     b.HasOne("SistemaApp.Core.Models.Customer", "Customer")
@@ -337,12 +380,23 @@ namespace SistemaApp.Core.Migrations
                     b.HasOne("SistemaApp.Core.Models.Supplier", "Supplier")
                         .WithMany("Products")
                         .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
 
                     b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("SistemaApp.Core.Models.User", b =>
+                {
+                    b.HasOne("SistemaApp.Core.Models.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Category", b =>
@@ -363,6 +417,11 @@ namespace SistemaApp.Core.Migrations
             modelBuilder.Entity("SistemaApp.Core.Models.Order", b =>
                 {
                     b.Navigation("OrdersDetails");
+                });
+
+            modelBuilder.Entity("SistemaApp.Core.Models.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("SistemaApp.Core.Models.Supplier", b =>

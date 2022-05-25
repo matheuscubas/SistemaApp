@@ -9,7 +9,25 @@ namespace SistemaApp.Core.Data.Seed
         private readonly PasswordService _passwordService = new PasswordService();
         public void SeedData(SistemaAppDbContext context)
         {
-            throw new NotImplementedException();
+            User[] users = {
+            new User
+            {
+                Id = 1,
+                Username = "Matheus",
+                Password = _passwordService.EncryptPassword("teste123"),
+                RoleId = 1
+            },
+            new User
+            {
+                Id = 2,
+                Username = "PrimeiroCliente",
+                Password = _passwordService.EncryptPassword("secreto123"),
+                RoleId = 2
+            }
+            };
+
+            context.Users.AddRange(users);
+            context.SaveChanges();
         }
 
         public void SeedData(ModelBuilder modelBuilder)

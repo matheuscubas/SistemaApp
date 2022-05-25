@@ -16,28 +16,28 @@ namespace SistemaApp.Core.Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            var categorySeeder = new CategorySeeder();
-            var customerSeeder = new CustomerSeeder();
-            var employeeSeeder = new EmployeeSeeder();
-            var orderDetailSeeder = new OrderDetailSeeder();
-            var orderSeeder = new OrderSeeder();
-            var productSeeder = new ProductSeeder();
-            var shipperSeeder = new ShipperSeeder();
-            var supplierSeeder = new SupplierSeeder();
-            var roleSeeder = new RoleSeeder();
-            var userSeeder = new UserSeeder();
+            //var categorySeeder = new CategorySeeder();
+            //var customerSeeder = new CustomerSeeder();
+            //var employeeSeeder = new EmployeeSeeder();
+            //var orderDetailSeeder = new OrderDetailSeeder();
+            //var orderSeeder = new OrderSeeder();
+            //var productSeeder = new ProductSeeder();
+            //var shipperSeeder = new ShipperSeeder();
+            //var supplierSeeder = new SupplierSeeder();
+            //var roleSeeder = new RoleSeeder();
+            //var userSeeder = new UserSeeder();
 
 
-            categorySeeder.SeedData(modelBuilder);
-            customerSeeder.SeedData(modelBuilder);
-            employeeSeeder.SeedData(modelBuilder);
-            shipperSeeder.SeedData(modelBuilder);
-            supplierSeeder.SeedData(modelBuilder);
-            productSeeder.SeedData(modelBuilder);
-            orderSeeder.SeedData(modelBuilder);
-            orderDetailSeeder.SeedData(modelBuilder);
-            roleSeeder.SeedData(modelBuilder);
-            userSeeder.SeedData(modelBuilder);
+            //categorySeeder.SeedData(modelBuilder);
+            //customerSeeder.SeedData(modelBuilder);
+            //employeeSeeder.SeedData(modelBuilder);
+            //shipperSeeder.SeedData(modelBuilder);
+            //supplierSeeder.SeedData(modelBuilder);
+            //productSeeder.SeedData(modelBuilder);
+            //orderSeeder.SeedData(modelBuilder);
+            //orderDetailSeeder.SeedData(modelBuilder);
+            //roleSeeder.SeedData(modelBuilder);
+            //userSeeder.SeedData(modelBuilder);
         }
 
         public DbSet<Category> Categories { get; set; }

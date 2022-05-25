@@ -24,7 +24,22 @@ namespace SistemaApp.Core.Data.Seed
 
         public void SeedData(SistemaAppDbContext context)
         {
-            throw new NotImplementedException();
+            Role[] roles = 
+                {
+                    new Role
+                    {
+                        Id = 1,
+                        Name = "Admin"
+                    },
+                    new Role
+                    {
+                        Id = 2,
+                        Name = "Client"
+                    } 
+                };
+
+            context.Roles.AddRange(roles);
+            context.SaveChanges();
         }
     }
 }

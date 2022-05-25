@@ -39,7 +39,7 @@ namespace SistemaApp.Core.Data.Mappings
             builder.HasOne(x => x.Supplier)
                 .WithMany(x => x.Products)
                 .HasForeignKey(x => x.SupplierId)
-                .OnDelete(DeleteBehavior.NoAction)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
             builder.HasOne(x => x.Category)

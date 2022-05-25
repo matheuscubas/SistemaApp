@@ -12,7 +12,13 @@ namespace SistemaApp.Core.Data.Seed
             var csvReader = new CsvReaderService<Customer>();
             var customers = csvReader.ReadCsv(filePath);
 
-            context.Customers.AddRange(customers);
+            foreach (var customer in customers)
+            {
+                context.Customers.Add(customer);
+                context.Customers.Attach(customer);
+                context.Customers.FirstOrDefault(x => x.Id == customer.Id);
+            }
+
             context.SaveChanges();
         }
 
