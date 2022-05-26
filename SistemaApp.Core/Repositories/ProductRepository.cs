@@ -1,4 +1,6 @@
-﻿using SistemaApp.Core.Data;
+﻿using Dapper;
+using SistemaApp.Core.Data;
+using SistemaApp.Core.Extensions;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Services.ConnectionService;
 
@@ -22,19 +24,32 @@ namespace SistemaApp.Core.Repositories
             _connection = connection;
         }
 
-        public Task<IEnumerable<Product>> GetAllAsync()
+        public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            using var connection = _connection.Connection();
+            return await connection.QueryAsync<Product>(GetAllProductsQuery);
         }
 
-        public Task<Product?> GetById(int id)
+        public async Task<Product?> GetById(int id)
         {
-            throw new NotImplementedException();
+            var query = @"
+                        SELECT Products.ProductId AS Id,
+                        Products.Name,
+                        Products.SupplierId,
+                        Products.CategoryId,
+                        Products.Unit,
+                        Products.Price
+                        FROM Products
+                        WHERE Products.ProductId = @Id";
+
+            using var connection = _connection.Connection();
+            return await connection.QueryFirstAsync<Product>(query, new { Id = id });
         }
 
-        public Task<PaginationResult<Product>> GetPaginated(int pageSize, int pageNumber)
+        public async Task<PaginationResult<Product>> GetPaginated(int pageSize, int pageNumber)
         {
-            throw new NotImplementedException();
+            using var connection = _connection.Connection();
+            return await connection.GetUsingSqlServerNativePagination<Product, object>(GetAllProductsQuery, new { }, pageSize, pageNumber);
         }
     }
 }

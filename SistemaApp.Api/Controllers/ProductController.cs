@@ -58,13 +58,49 @@ namespace SistemaApp.Api.Controllers
         [HttpGet("[action]")]
         public async Task<ActionResult<ResultViewModel<Product>>> GetProduct(int id)
         {
-            return Ok();
+            var result = new ResultViewModel<Product>();
+
+            if (id < 1)
+            {
+                result.Errors.Add($"The Id value must be grater than 0.");
+                _logger.Warning("Id value must be grater than 0.");
+                return BadRequest(result);
+            }
+
+            try
+            {
+                result.Data = await _repository.GetById(id);
+                result.Sucess = true;
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("[action]")]
         public async Task<ActionResult<ResultViewModel<IEnumerable<Product>>>> GetAllProducts()
         {
-            return Ok();
+            var result = new ResultViewModel<IEnumerable<Product>>();
+
+            try
+            {
+                result.Data = await _repository.GetAllAsync();
+                result.Sucess = true;
+                _logger.Information($"Returning {result.Data.Count()} Products");
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("[action]")]
@@ -72,7 +108,28 @@ namespace SistemaApp.Api.Controllers
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber = 1)
         {
-            return Ok();
+            var result = new ResultViewModel<PaginationResult<Product>>();
+
+            if (pageSize < 1 || pageNumber < 1)
+            {
+                result.Errors.Add("The pageNumber and pageSize must be grater than 0.");
+                _logger.Information("The pageNumber and pageSize must be grater than 0.");
+                return BadRequest(result);
+            }
+            try
+            {
+                result.Data = await _repository.GetPaginated(pageSize, pageNumber);
+                result.Sucess = true;
+                _logger.Information($"Returning {result.Data.Items.Count()} Products");
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Information(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpPut("[action]")]

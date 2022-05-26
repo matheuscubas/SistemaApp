@@ -1,0 +1,336 @@
+﻿++Solution 'SistemaApp' ‎(2 of 2 projects)
+i:{00000000-0000-0000-0000-000000000000}:SistemaApp.sln
+++SistemaApp.Api
+i:{00000000-0000-0000-0000-000000000000}:SistemaApp.Api
+++Connected Services 
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>540
+++Dependencies
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>539
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>393
+++Properties
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\properties\
+++Configuration
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\configuration\
+++Controllers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\controllers\
+++Validators
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\
+++ViewModels
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\viewmodels\
+++.gitignore
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\.gitignore
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\.gitignore
+++appsettings.json
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\appsettings.json
+++Program.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\program.cs
+++No service dependencies discovered
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>541
+++Analyzers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:analyzers
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:analyzers
+++Frameworks
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:frameworks
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:frameworks
+++Packages
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:packages
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:packages
+++Projects
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:projects
+++launchSettings.json
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\properties\launchsettings.json
+++CategoryController.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\controllers\categorycontroller.cs
+++CustomerController.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\controllers\customercontroller.cs
+++OrderController.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\controllers\ordercontroller.cs
+++UserController.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\controllers\usercontroller.cs
+++CreateCategoryValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\createcategoryvalidator.cs
+++CreateOrderViewModelValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\createorderviewmodelvalidator.cs
+++UpdateCategoryValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\updatecategoryvalidator.cs
+++UpdateOrderDtoValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\updateorderdtovalidator.cs
+++UserSignInViewModelValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\usersigninviewmodelvalidator.cs
+++CreateOrderViewModel.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\viewmodels\createorderviewmodel.cs
+++ResultViewModel.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\viewmodels\resultviewmodel.cs
+++UserLoginViewModel.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\viewmodels\userloginviewmodel.cs
+++appsettings.Development.json
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\appsettings.development.json
+++Microsoft.AspNetCore.Analyzers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.App.Analyzers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+++Microsoft.AspNetCore.App.CodeFixes
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.5\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.5\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.5\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++Microsoft.NET.Sdk.Razor.SourceGenerators
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\sdk\6.0.203\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+++System.Text.Json.SourceGeneration
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.5\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++Microsoft.AspNetCore.App
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\microsoft.aspnetcore.app
+++Microsoft.NETCore.App
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\microsoft.netcore.app
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\microsoft.netcore.app
+++BCrypt.Net-Next (4.0.3)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>561
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>581
+++CsvHelper (27.2.1)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>563
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>583
+++Dapper (2.0.123)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>559
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>579
+++Dapper.Contrib (2.0.78)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>560
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>580
+++FluentValidation.AspNetCore (11.0.1)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>557
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>577
+++Microsoft.AspNetCore.Authentication (2.2.0)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>558
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>578
+++Microsoft.AspNetCore.Authentication.JwtBearer (6.0.5)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>562
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>582
+++Microsoft.EntityFrameworkCore (6.0.5)
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>604
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>605
+++Microsoft.EntityFrameworkCore.Design (6.0.5)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>554
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>575
+++Microsoft.EntityFrameworkCore.SqlServer (6.0.5)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>553
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>574
+++Microsoft.EntityFrameworkCore.Tools (6.0.5)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>564
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>584
+++Serilog.AspNetCore (6.0.0-dev-00265)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>556
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:>576
+++Swashbuckle.AspNetCore (6.3.1)
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:>555
+++SistemaApp.Core
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\sistemaapp.core.csproj
+i:{00000000-0000-0000-0000-000000000000}:SistemaApp.Core
+++Csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\
+++Data
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\
+++Mappings
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\
+++CategoryMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\categorymap.cs
+++CustomerMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\customermap.cs
+++EmployeeMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\employeemap.cs
+++OrderDetailMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\orderdetailmap.cs
+++OrderMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\ordermap.cs
+++ProductMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\productmap.cs
+++RoleMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\rolemap.cs
+++ShipperMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\shippermap.cs
+++SupplierMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\suppliermap.cs
+++UserMap.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\mappings\usermap.cs
+++Seed
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\
+++CategorySeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\categoryseeder.cs
+++CustomerSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\customerseeder.cs
+++EmployeeSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\employeeseeder.cs
+++ISeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\iseeder.cs
+++OrderDetailSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\orderdetailseeder.cs
+++OrderSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\orderseeder.cs
+++ProductSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\productseeder.cs
+++RoleSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\roleseeder.cs
+++ShipperSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\shipperseeder.cs
+++SupplierSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\supplierseeder.cs
+++UserSeeder.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\seed\userseeder.cs
+++SistemaAppDbContext.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\data\sistemaappdbcontext.cs
+++Dtos
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\dtos\
+++Extensions
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\extensions\
+++Migrations
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\migrations\
+++20220524182828_InitialCreate.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\migrations\20220524182828_initialcreate.cs
+++SistemaAppDbContextModelSnapshot.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\migrations\sistemaappdbcontextmodelsnapshot.cs
+++Models
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\
+++Repositories
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\
+++Services
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\
+++categories.csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\categories.csv
+++customers.csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\customers.csv
+++employees.csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\employees.csv
+++orderDetails.csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\orderdetails.csv
+++orders.csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\orders.csv
+++products.csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\products.csv
+++shippers.csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\shippers.csv
+++suppliers.csv
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\csv\suppliers.csv
+++CrateUserDto.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\dtos\crateuserdto.cs
+++CreateOrderDto.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\dtos\createorderdto.cs
+++OrderWithNamesDto.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\dtos\orderwithnamesdto.cs
+++PaginationResultDto.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\dtos\paginationresultdto.cs
+++UpdateOrderDto.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\dtos\updateorderdto.cs
+++UserWithRole.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\dtos\userwithrole.cs
+++DbSetExtensions.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\extensions\dbsetextensions.cs
+++GetRoleClaims.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\extensions\getroleclaims.cs
+++QueryExentions.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\extensions\queryexentions.cs
+++SeederExtensions.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\extensions\seederextensions.cs
+++20220524182828_InitialCreate.Designer.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\migrations\20220524182828_initialcreate.designer.cs
+++Category.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\category.cs
+++Customer.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\customer.cs
+++Employee.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\employee.cs
+++Order.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\order.cs
+++OrderDetail.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\orderdetail.cs
+++Product.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\product.cs
+++Role.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\role.cs
+++Shipper.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\shipper.cs
+++Supplier.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\supplier.cs
+++User.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\models\user.cs
+++CategoryRepository.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\categoryrepository.cs
+++CustomerRepository.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\customerrepository.cs
+++IRepositoryCud.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\irepositorycud.cs
+++IRepositoryRead.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\irepositoryread.cs
+++OrderRepository.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\orderrepository.cs
+++RepositoryCud.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\repositorycud.cs
+++UserRepository.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\userrepository.cs
+++ConnectionService
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\connectionservice\
+++CsvReader
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\csvreader\
+++PasswordService
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\passwordservice\
+++TokenService
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\tokenservice\
+++ConnectionService.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\connectionservice\connectionservice.cs
+++IConnectionService.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\connectionservice\iconnectionservice.cs
+++CsvReaderService.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\csvreader\csvreaderservice.cs
+++ICsvReader.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\csvreader\icsvreader.cs
+++IPasswordService.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\passwordservice\ipasswordservice.cs
+++PasswordService.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\passwordservice\passwordservice.cs
+++ITokenService.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\tokenservice\itokenservice.cs
+++TokenService.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\services\tokenservice\tokenservice.cs
+++ConfigurationServices.cs
+++Configuration.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\configuration\configuration.cs
+++CreateCustomerDto.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\dtos\createcustomerdto.cs
+++CreateCustomerValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\createcustomervalidator.cs
+++20220525140428_SeedData.cs
+++20220525140428_SeedData.Designer.cs
+++UpdateCustomerDto.cs
+++UpdateCustomerValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\updatecustomervalidator.cs
+++EmployeeController.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\controllers\employeecontroller.cs
+++EmployeeRepository.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\employeerepository.cs
+++CreateEmployeeVlidator.cs
+++CreateEmployeeValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\createemployeevalidator.cs
+++UpdateEmployeeValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\updateemployeevalidator.cs
+++ProductController.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\controllers\productcontroller.cs
+++CreateProductValidator.cs
+i:{bccc355e-b592-469b-9bf7-f395474f935a}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.api\validators\createproductvalidator.cs
+++ProductRepository.cs
+i:{cb1cc524-d619-490a-abd7-fbe11fe9f17e}:c:\users\modalgr\onedrive - modalgr\área de trabalho\projetos treino\sistemaapp\sistemaapp.core\repositories\productrepository.cs
+++ProducRepository.cs
