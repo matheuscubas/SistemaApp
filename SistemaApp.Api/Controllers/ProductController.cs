@@ -8,6 +8,7 @@ using Logger = Serilog.ILogger;
 
 namespace SistemaApp.Api.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
