@@ -59,13 +59,49 @@ namespace SistemaApp.Api.Controllers
         [HttpGet("[action]")]
         public async Task<ActionResult<ResultViewModel<Shipper>>> GetShipper(int id)
         {
-            return Ok();
+            var result = new ResultViewModel<Shipper>();
+
+            if (id < 1)
+            {
+                result.Errors.Add($"The Id value must be grater than 0.");
+                _logger.Warning("Id value must be grater than 0.");
+                return BadRequest(result);
+            }
+
+            try
+            {
+                result.Data = await _repository.GetById(id);
+                result.Sucess = true;
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("[action]")]
         public async Task<ActionResult<ResultViewModel<IEnumerable<Shipper>>>> GetAllShippers()
         {
-            return Ok();
+            var result = new ResultViewModel<IEnumerable<Shipper>>();
+
+            try
+            {
+                result.Data = await _repository.GetAllAsync();
+                result.Sucess = true;
+                _logger.Information($"Returning {result.Data.Count()} Shippers");
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("[action]")]
@@ -73,13 +109,62 @@ namespace SistemaApp.Api.Controllers
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber = 1)
         {
-            return Ok();
+            var result = new ResultViewModel<PaginationResult<Shipper>>();
+
+            if (pageSize < 1 || pageNumber < 1)
+            {
+                result.Errors.Add("The pageNumber and pageSize must be grater than 0.");
+                _logger.Information("The pageNumber and pageSize must be grater than 0.");
+                return BadRequest(result);
+            }
+            try
+            {
+                result.Data = await _repository.GetPaginated(pageSize, pageNumber);
+                result.Sucess = true;
+                _logger.Information($"Returning {result.Data.Items.Count()} Shippers");
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Information(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult<ResultViewModel<Shipper>>> UpdateShipper()
+        public async Task<ActionResult<ResultViewModel<Shipper>>> UpdateShipper([FromBody] Shipper model)
         {
-            return Ok();
+            var result = new ResultViewModel<Shipper>();
+            var validator = new UpdateShipperValidator();
+            var validationResult = await validator.ValidateAsync(model);
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                {
+                    _logger.Information(error.ToString());
+                    result.Errors.Add(error.ToString());
+                }
+                return BadRequest(result);
+            }
+
+            try
+            {
+                _repository.Update(model);
+                _logger.Information($"Shipper {model.Name} updated successfully.");
+                result.Data = await _repository.GetById(model.Id);
+                result.Sucess = true;
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete("[action]")]

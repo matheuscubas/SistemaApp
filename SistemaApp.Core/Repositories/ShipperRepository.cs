@@ -10,7 +10,7 @@ namespace SistemaApp.Core.Repositories
     {
         private readonly ConnectionService _connection;
         private readonly string GetAllShippersQuery = @"
-                                                    SELECT Shippers.Phone AS Id,
+                                                    SELECT Shippers.ShipperId AS Id,
                                                     Shippers.ShipperName AS Name,
                                                     Shippers.Phone
                                                     FROM Shippers";
@@ -29,7 +29,7 @@ namespace SistemaApp.Core.Repositories
         public async Task<Shipper?> GetById(int id)
         {
             var query = @"
-                        SELECT Shippers.Phone AS Id,
+                        SELECT Shippers.ShipperId AS Id,
                         Shippers.ShipperName AS Name,
                         Shippers.Phone
                         FROM Shippers
