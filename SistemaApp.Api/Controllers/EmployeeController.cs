@@ -105,7 +105,7 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<ResultViewModel<PaginationResult<Employee>>>> GetPaginatedCustomer(
+        public async Task<ActionResult<ResultViewModel<PaginationResult<Employee>>>> GetPaginatedEmployees(
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber = 1)
         {
@@ -134,7 +134,7 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult<ResultViewModel<Employee>>> UpdateCustomer([FromBody] Employee model)
+        public async Task<ActionResult<ResultViewModel<Employee>>> UpdateEmployee([FromBody] Employee model)
         {
             var result = new ResultViewModel<Employee>();
             var validator = new UpdateEmployeeValidator();
@@ -168,7 +168,7 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpDelete("[action]")]
-        public async Task<ActionResult<ResultViewModel<Employee>>> DeleteCustomer(int id)
+        public async Task<ActionResult<ResultViewModel<Employee>>> DeleteEmployee(int id)
         {
             var result = new ResultViewModel<Employee>();
 

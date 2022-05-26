@@ -171,7 +171,7 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpDelete("[action]")]
-        public async Task<ActionResult<ResultViewModel<Customer>>> DelteCustomer(int id)
+        public async Task<ActionResult<ResultViewModel<Customer>>> DeleteCustomer(int id)
         {
             var result = new ResultViewModel<Customer>();
 
