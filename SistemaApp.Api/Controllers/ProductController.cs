@@ -13,18 +13,16 @@ namespace SistemaApp.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ProductRepository _repository;
-        private readonly SistemaAppDbContext _context;
         private readonly Logger _logger;
 
-        public ProductController(ProductRepository repository, SistemaAppDbContext context, Serilog.ILogger logger)
+        public ProductController(ProductRepository repository, Serilog.ILogger logger)
         {
             _repository = repository;
-            _context = context;
             _logger = logger;
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult<ResultViewModel<Product>>> CreateProdut([FromBody] Product model)
+        public async Task<ActionResult<ResultViewModel<Product>>> CreateProduct([FromBody] Product model)
         {
             var result = new ResultViewModel<Product>();
             var validator = new CreateProductValidator();

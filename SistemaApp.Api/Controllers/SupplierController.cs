@@ -13,13 +13,11 @@ namespace SistemaApp.Api.Controllers
     public class SupplierController : ControllerBase
     {
         private readonly SupplierRepository _repository;
-        private readonly SistemaAppDbContext _context;
         private readonly Logger _logger;
 
-        public SupplierController(SupplierRepository repository, SistemaAppDbContext context, Serilog.ILogger logger)
+        public SupplierController(SupplierRepository repository, Serilog.ILogger logger)
         {
             _repository = repository;
-            _context = context;
             _logger = logger;
         }
 
@@ -108,7 +106,7 @@ namespace SistemaApp.Api.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<ActionResult<ResultViewModel<PaginationResult<Supplier>>>> GetPagintedSuppliers(
+        public async Task<ActionResult<ResultViewModel<PaginationResult<Supplier>>>> GetPaginatedSuppliers(
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber = 1)
         {

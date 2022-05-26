@@ -14,13 +14,11 @@ namespace SistemaApp.Api.Controllers
     public class ShipperController : ControllerBase
     {
         private readonly ShipperRepository _repository;
-        private readonly SistemaAppDbContext _context;
         private readonly Logger _logger;
 
-        public ShipperController(ShipperRepository repository, SistemaAppDbContext context, Serilog.ILogger logger)
+        public ShipperController(ShipperRepository repository, Serilog.ILogger logger)
         {
             _repository = repository;
-            _context = context;
             _logger = logger;
         }
 

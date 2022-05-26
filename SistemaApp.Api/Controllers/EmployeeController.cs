@@ -12,13 +12,11 @@ namespace SistemaApp.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly SistemaAppDbContext _context;
         private readonly Logger _logger;
         private readonly EmployeeRepository _repository;
 
-        public EmployeeController(SistemaAppDbContext context, Serilog.ILogger logger, EmployeeRepository repository)
+        public EmployeeController(Serilog.ILogger logger, EmployeeRepository repository)
         {
-            _context = context;
             _logger = logger;
             _repository = repository;
         }

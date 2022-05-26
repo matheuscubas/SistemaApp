@@ -17,24 +17,18 @@ namespace SistemaApp.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly TokenService _tokenService;
-        private readonly SistemaAppDbContext _context;
         private readonly PasswordService _passwordService;
-        private readonly ConnectionService _connection;
         private readonly UserRepository _repository;
         private readonly Logger _logger;
 
         public UserController(
             TokenService tokenService, 
-            SistemaAppDbContext context, 
-            PasswordService passwordService, 
-            ConnectionService connection, 
+            PasswordService passwordService,
             Logger logger,
             UserRepository repository)
         {
             _tokenService = tokenService;
-            _context = context;
             _passwordService = passwordService;
-            _connection = connection;
             _repository = repository;
             _logger = logger;
         }

@@ -13,13 +13,11 @@ namespace SistemaApp.Api.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly SistemaAppDbContext _context;
         private readonly Logger _logger;
         private readonly CustomerRepository _repository;
 
-        public CustomerController(SistemaAppDbContext context, Logger logger, CustomerRepository repository)
+        public CustomerController(Logger logger, CustomerRepository repository)
         {
-            _context = context;
             _logger = logger;
             _repository = repository;
         }
@@ -107,7 +105,7 @@ namespace SistemaApp.Api.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<ResultViewModel<PaginationResult<Customer>>>> GetPagintedCustomers(
+        public async Task<ActionResult<ResultViewModel<PaginationResult<Customer>>>> GetPaginetedCustomers(
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber =1)
         {

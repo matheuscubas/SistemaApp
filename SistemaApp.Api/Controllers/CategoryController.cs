@@ -12,13 +12,11 @@ namespace SistemaApp.Api.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly SistemaAppDbContext _context;
         private readonly Logger _logger;
         private readonly CategoryRepository _repository;
 
-        public CategoryController(SistemaAppDbContext context, Logger logger, CategoryRepository repository)
+        public CategoryController(Logger logger, CategoryRepository repository)
         {
-            _context = context;
             _logger = logger;
             _repository = repository;
         }

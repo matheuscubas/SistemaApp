@@ -14,13 +14,11 @@ namespace SistemaApp.Api.Controllers
     public class OrderController : ControllerBase
     {
         private readonly OrderRepository _repository;
-        private readonly SistemaAppDbContext _context;
         private readonly Logger _logger;
 
-        public OrderController(OrderRepository repository, SistemaAppDbContext context, Logger logger)
+        public OrderController(OrderRepository repository, Logger logger)
         {
             _repository = repository;
-            _context = context;
             _logger = logger;
         }
 
