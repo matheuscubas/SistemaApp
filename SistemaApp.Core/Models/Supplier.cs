@@ -29,6 +29,6 @@ namespace SistemaApp.Core.Models
         public string Phone { get; set; }
 
         [Ignore]
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Product>? Products { get; set; }
     }
 }

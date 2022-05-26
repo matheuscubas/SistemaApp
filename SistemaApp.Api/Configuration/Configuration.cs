@@ -44,6 +44,7 @@ namespace SistemaApp.Api.Configuration
             builder.Services.AddScoped<EmployeeRepository>();
             builder.Services.AddScoped<ProductRepository>();
             builder.Services.AddScoped<ShipperRepository>();
+            builder.Services.AddScoped<SupplierRepository>();
             builder.Services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

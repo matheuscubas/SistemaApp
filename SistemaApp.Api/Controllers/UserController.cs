@@ -53,8 +53,6 @@ namespace SistemaApp.Api.Controllers
             }
             var token = _tokenService.GenerateToken(user);
 
-            //Talvez seja necessário criar um TokenResultViewModel para poder retornar o token e + algum dado???
-            //Verificar depois
             result.Data = token;
             result.Sucess = true;
             _logger.Information($"User {user.Username} have succesfully logged in.");
