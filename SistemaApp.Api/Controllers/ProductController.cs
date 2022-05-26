@@ -184,7 +184,7 @@ namespace SistemaApp.Api.Controllers
                 result.Data = await _repository.GetById(id);
                 _repository.DeleteAsync(id);
                 result.Sucess = true;
-                _logger.Information($"The Category {result.Data.Name} was deleted successfully.");
+                _logger.Information($"The Product {result.Data.Name} was deleted successfully.");
             }
             catch (Exception ex)
             {

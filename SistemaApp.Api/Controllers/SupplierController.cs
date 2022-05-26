@@ -138,16 +138,68 @@ namespace SistemaApp.Api.Controllers
 
         [HttpPut]
         [Route("[action]")]
-        public async Task<ActionResult<ResultViewModel<Supplier>>> UpdateSupplier()
+        public async Task<ActionResult<ResultViewModel<Supplier>>> UpdateSupplier([FromBody] Supplier model)
         {
-            return Ok();
+            var result = new ResultViewModel<Supplier>();
+            var validator = new UpdateSupplierValidator();
+            var validationResult = await validator.ValidateAsync(model);
+
+            if (!validationResult.IsValid)
+            {
+                foreach (var error in validationResult.Errors)
+                {
+                    _logger.Information(error.ToString());
+                    result.Errors.Add(error.ToString());
+                }
+                return BadRequest(result);
+            }
+
+            try
+            {
+                _repository.Update(model);
+                _logger.Information($"Supplier {model.Name} updated successfully.");
+                result.Data = await _repository.GetById(model.Id);
+                result.Sucess = true;
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete]
         [Route("[action]")]
-        public async Task<ActionResult<ResultViewModel<Supplier>>> DeleteSupplier()
+        public async Task<ActionResult<ResultViewModel<Supplier>>> DeleteSupplier(int id)
         {
-            return Ok();
+            var result = new ResultViewModel<Supplier>();
+
+            if (id < 1)
+            {
+                result.Errors.Add($"The Id value must be grater than 0.");
+                _logger.Warning("Id value must be grater than 0.");
+                return BadRequest(result);
+            }
+
+            try
+            {
+                result.Data = await _repository.GetById(id);
+                _repository.DeleteAsync(id);
+                result.Sucess = true;
+                _logger.Information($"The Supplier {result.Data.Name} was deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                result.Data = null;
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
     }
 }
