@@ -152,7 +152,7 @@ namespace SistemaApp.Api.Controllers
             try
             {
                 _repository.Update(model);
-                _logger.Information($"Employee {model.Name} updated successfully.");
+                _logger.Information($"Product {model.Name} updated successfully.");
                 result.Data = await _repository.GetById(model.Id);
                 result.Sucess = true;
             }
@@ -169,7 +169,31 @@ namespace SistemaApp.Api.Controllers
         [HttpDelete("[action]")]
         public async Task<ActionResult<ResultViewModel<Product>>> DeleteProduct(int id)
         {
-            return Ok();
+            var result = new ResultViewModel<Product>();
+
+            if (id < 1)
+            {
+                result.Errors.Add($"The Id value must be grater than 0.");
+                _logger.Warning("Id value must be grater than 0.");
+                return BadRequest(result);
+            }
+
+            try
+            {
+                result.Data = await _repository.GetById(id);
+                _repository.DeleteAsync(id);
+                result.Sucess = true;
+                _logger.Information($"The Category {result.Data.Name} was deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                result.Data = null;
+                _logger.Warning(ex.Message);
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
     }
 }
