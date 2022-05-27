@@ -16,8 +16,8 @@ namespace SistemaApp.Core.Repositories
                                                     Employees.Photo,
                                                     Employees.Notes
                                                     FROM Employees";
-        private readonly ConnectionService _connection;
-        public EmployeeRepository(SistemaAppDbContext context, ConnectionService connection) : base(context)
+        private readonly IConnectionService _connection;
+        public EmployeeRepository(SistemaAppDbContext context, IConnectionService connection) : base(context)
         {
             _connection = connection;
         }

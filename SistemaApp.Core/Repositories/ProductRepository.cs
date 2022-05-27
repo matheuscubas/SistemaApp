@@ -8,7 +8,7 @@ namespace SistemaApp.Core.Repositories
 {
     public class ProductRepository : RepositoryCud<Product>, IRepositoryCud<Product>, IRepositoryRead<Product>
     {
-        private readonly ConnectionService _connection;
+        private readonly IConnectionService _connection;
         private const string GetAllProductsQuery = @"
                         SELECT Products.ProductId AS Id,
                         Products.Name,
@@ -18,7 +18,7 @@ namespace SistemaApp.Core.Repositories
                         Products.Price
                         FROM Products";
 
-        public ProductRepository(SistemaAppDbContext context, ConnectionService connection) 
+        public ProductRepository(SistemaAppDbContext context, IConnectionService connection) 
             : base(context)
         {
             _connection = connection;

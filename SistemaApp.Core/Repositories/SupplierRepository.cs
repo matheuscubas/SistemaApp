@@ -8,7 +8,7 @@ namespace SistemaApp.Core.Repositories
 {
     public class SupplierRepository : RepositoryCud<Supplier>, IRepositoryCud<Supplier>, IRepositoryRead<Supplier>
     {
-        private readonly ConnectionService _connection;
+        private readonly IConnectionService _connection;
         private readonly string GetAllSupplierQuery = @"
                                                     SELECT Suppliers.SupplierId AS Id,
                                                     Suppliers.SupplierName AS Name,
@@ -20,7 +20,7 @@ namespace SistemaApp.Core.Repositories
                                                     Suppliers.Phone
                                                     FROM Suppliers";
 
-        public SupplierRepository(SistemaAppDbContext context, ConnectionService connection) : base(context)
+        public SupplierRepository(SistemaAppDbContext context, IConnectionService connection) : base(context)
         {
             _connection = connection;
         }

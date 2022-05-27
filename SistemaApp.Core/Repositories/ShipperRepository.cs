@@ -8,13 +8,13 @@ namespace SistemaApp.Core.Repositories
 {
     public class ShipperRepository : RepositoryCud<Shipper>, IRepositoryCud<Shipper>, IRepositoryRead<Shipper>
     {
-        private readonly ConnectionService _connection;
+        private readonly IConnectionService _connection;
         private readonly string GetAllShippersQuery = @"
                                                     SELECT Shippers.ShipperId AS Id,
                                                     Shippers.ShipperName AS Name,
                                                     Shippers.Phone
                                                     FROM Shippers";
-        public ShipperRepository(SistemaAppDbContext context, ConnectionService connection) 
+        public ShipperRepository(SistemaAppDbContext context, IConnectionService connection) 
             : base(context)
         {
             _connection = connection;

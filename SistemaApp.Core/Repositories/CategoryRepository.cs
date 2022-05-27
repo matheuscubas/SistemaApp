@@ -8,13 +8,13 @@ namespace SistemaApp.Core.Repositories
 {
     public class CategoryRepository : RepositoryCud<Category>, IRepositoryRead<Category>, IRepositoryCud<Category>
     {
-        private readonly ConnectionService _connection;
+        private readonly IConnectionService _connection;
         private const string GetAllCategoriesQuery = @"
                         SELECT Categories.CategoryId AS Id,
                         Categories.CategoryName AS Name,
                         Categories.Description AS Description
                         FROM Categories";
-        public CategoryRepository(SistemaAppDbContext context, ConnectionService connection)
+        public CategoryRepository(SistemaAppDbContext context, IConnectionService connection)
             : base(context)
         {
             _connection = connection;

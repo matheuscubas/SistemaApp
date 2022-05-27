@@ -10,7 +10,7 @@ namespace SistemaApp.Core.Repositories
 {
     public class CustomerRepository : RepositoryCud<Customer>, IRepositoryRead<Customer>, IRepositoryCud<Customer>
     {
-        private readonly ConnectionService _connection;
+        private readonly IConnectionService _connection;
         private const string GetAllCustomersQuery = @"
                                                     SELECT Customers.CustomerId AS Id,
                                                     Customers.CustomerName AS Name,
@@ -20,7 +20,7 @@ namespace SistemaApp.Core.Repositories
                                                     Customers.PostalCode AS PostalCode,
                                                     Customers.Country AS Country
                                                     FROM Customers";
-        public CustomerRepository(SistemaAppDbContext context, ConnectionService connection) 
+        public CustomerRepository(SistemaAppDbContext context, IConnectionService connection) 
             : base(context)
         {
             _connection = connection;

@@ -9,9 +9,9 @@ namespace SistemaApp.Core.Repositories
 {
     public class UserRepository : RepositoryCud<User>, IRepositoryCud<User>, IRepositoryRead<User>
     {
-        private readonly ConnectionService _connection;
-        private readonly PasswordService _passwordService;
-        public UserRepository(SistemaAppDbContext context,ConnectionService connection, PasswordService passwordService) 
+        private readonly IConnectionService _connection;
+        private readonly IPasswordService _passwordService;
+        public UserRepository(SistemaAppDbContext context,IConnectionService connection, IPasswordService passwordService) 
             : base(context)
         {
             _connection = connection;

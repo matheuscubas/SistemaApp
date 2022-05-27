@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Microsoft.EntityFrameworkCore;
 using SistemaApp.Api.ViewModels;
 using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
@@ -11,7 +10,7 @@ namespace SistemaApp.Core.Repositories
 {
     public class OrderRepository : RepositoryCud<Order>, IRepositoryRead<OrderWithNamesDto>, IRepositoryCud<Order>
     {
-        private readonly ConnectionService _connection;
+        private readonly IConnectionService _connection;
         private const string  GetAllQueryOrdersWithNames = 
                         @"
                         SELECT Orders.OrderId AS Id,
@@ -27,7 +26,7 @@ namespace SistemaApp.Core.Repositories
                         INNER JOIN Shippers ON Orders.ShipperId = Shippers.ShipperId
                         INNER JOIN OrderDetails ON Orders.OrderId = OrderDetails.OrderId
                         INNER JOIN Products ON OrderDetails.ProductId = Products.ProductId";
-        public OrderRepository(SistemaAppDbContext context, ConnectionService connection) 
+        public OrderRepository(SistemaAppDbContext context, IConnectionService connection) 
             : base(context)
         {
             _connection = connection;
