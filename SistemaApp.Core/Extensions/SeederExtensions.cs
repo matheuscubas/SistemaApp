@@ -14,13 +14,16 @@ namespace SistemaApp.Core.Extensions
 
             var sets = context?.GetDbSetProperties();
 
-            if (sets is not null)
+            if (context is not null && context.Database.CanConnect())
             {
-                foreach (var set in sets)
+                if (sets is not null)
                 {
-                    MethodInfo? method = typeof(SeederExtensions).GetMethod(nameof(Seed), BindingFlags.NonPublic|BindingFlags.Static);
-                    MethodInfo? generic = method?.MakeGenericMethod(set.PropertyType.GetGenericArguments().First());
-                    generic?.Invoke(set, new object?[] { context });
+                    foreach (var set in sets)
+                    {
+                        MethodInfo? method = typeof(SeederExtensions).GetMethod(nameof(Seed), BindingFlags.NonPublic | BindingFlags.Static);
+                        MethodInfo? generic = method?.MakeGenericMethod(set.PropertyType.GetGenericArguments().First());
+                        generic?.Invoke(set, new object?[] { context });
+                    }
                 }
             }
 

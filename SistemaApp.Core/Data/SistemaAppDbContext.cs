@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SistemaApp.Core.Data.Seed;
 using SistemaApp.Core.Models;
 using System.Reflection;
 
@@ -15,7 +14,6 @@ namespace SistemaApp.Core.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
         }
 
         public DbSet<Category> Categories { get; set; }
