@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SistemaApp.Core.Data;
 using SistemaApp.Core.Data.Seed;
 using System.Reflection;

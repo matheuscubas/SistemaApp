@@ -3,9 +3,9 @@ using SistemaApp.Api.ViewModels;
 
 namespace SistemaApp.Api.Validators
 {
-    public class CreateOrderViewModelValidator : AbstractValidator<CreateOrderViewModel>
+    public class CreateOrderValidator : AbstractValidator<CreateOrderDto>
     {
-        public CreateOrderViewModelValidator()
+        public CreateOrderValidator()
         {
             RuleFor(x => x.CustomerId)
                 .NotNull()
@@ -32,7 +32,7 @@ namespace SistemaApp.Api.Validators
 
             //Quantity
             RuleFor(x => x.Quantity)
-                .GreaterThan(0)
+                .NotNull()
                 .NotEmpty()
                 .GreaterThan(0);
         }

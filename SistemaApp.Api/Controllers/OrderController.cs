@@ -24,34 +24,25 @@ namespace SistemaApp.Api.Controllers
 
         [HttpPost("[action]")]
         public async Task<ActionResult<ResultViewModel<OrderWithNamesDto>>> CreateOrder(
-            [FromBody] CreateOrderViewModel model)
+            [FromBody] CreateOrderDto model)
         {
             var result = new ResultViewModel<OrderWithNamesDto>();
-            var validator = new CreateOrderViewModelValidator();
+            var validator = new CreateOrderValidator();
             var validatorResult = await validator.ValidateAsync(model);
 
             if (!validatorResult.IsValid)
             {
-                result.Errors.Add("An order cannot have null propertys!");
                 var errors = validatorResult.Errors;
+                result.Errors.Add(errors.First().ErrorMessage);
                 _logger.Information(errors.First().ErrorMessage);
                 foreach (var error in errors)
                     result.Errors.Add(error.ErrorMessage);
                 return BadRequest(result);
             }
 
-            var dto = new CreateOrderDto()
-            {
-                CustomerId = model.CustomerId,
-                EmployeeId = model.EmployeeId,
-                ShipperId = model.ShipperId,
-                ProductId = model.ProductId,
-                Quantity = model.Quantity
-            };
-
             try
             {
-                var orderId = await _repository.CreateAsync(dto);
+                var orderId = await _repository.CreateAsync(model);
                 var orderResult = await _repository.GetByIdAsync(orderId);
 
                 result.Sucess = true;
@@ -96,10 +87,9 @@ namespace SistemaApp.Api.Controllers
             }
             catch(Exception ex)
             {
-                if (!result.Data.Any())
-                    result.Errors.Add(ex.Message);
-                    result.Errors.Add($"The Order with id {id} does not correspond to an active Order, please try again.");
-                    return BadRequest(result);
+                result.Errors.Add(ex.Message);
+                result.Errors.Add($"The Order with id {id} does not correspond to an active Order, please try again.");
+                return BadRequest(result);
             }
             return Ok(result);
         }
@@ -111,10 +101,9 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-                var orders = await _repository.GetAllAsync();
-                result.Data = orders;
+                result.Data = await _repository.GetAllAsync();
                 result.Sucess = true;
-                _logger.Information($"returning {orders.Count()}");
+                _logger.Information($"returning {result.Data.Count()}");
             }
             catch (Exception ex)
             {
