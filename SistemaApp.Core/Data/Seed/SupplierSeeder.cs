@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Services.CsvReader;
 
@@ -9,7 +8,7 @@ namespace SistemaApp.Core.Data.Seed
     {
         public void SeedData(SistemaAppDbContext context)
         {
-            var filePath = @"C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\Csv\suppliers.csv";
+            var filePath = Path.GetFullPath("suppliers.csv");
             var csvReader = new CsvReaderService<Supplier>();
             var suppliers = csvReader.ReadCsv(filePath);
 
@@ -23,7 +22,7 @@ namespace SistemaApp.Core.Data.Seed
 
         public void SeedData(ModelBuilder modelBuilder)
         {
-            var filePath = @"C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\Csv\suppliers.csv";
+            var filePath = Path.GetFullPath("suppliers.csv");
             var csvReader = new CsvReaderService<Supplier>();
             var suppliers = csvReader.ReadCsv(filePath);
 

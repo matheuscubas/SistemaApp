@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaApp.Core.Models;
-using SistemaApp.Core.Services.CsvReader;
 
 namespace SistemaApp.Core.Data.Seed
 {

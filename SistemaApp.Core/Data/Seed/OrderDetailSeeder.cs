@@ -8,7 +8,7 @@ namespace SistemaApp.Core.Data.Seed
     {
         public void SeedData(SistemaAppDbContext context)
         {
-            var filePath = @"C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\Csv\orderDetails.csv";
+            var filePath = Path.GetFullPath("orderDetails.csv");
             var csvReader = new CsvReaderService<OrderDetail>();
             var orderDetails = csvReader.ReadCsv(filePath);
 
@@ -22,7 +22,7 @@ namespace SistemaApp.Core.Data.Seed
 
         public void SeedData(ModelBuilder modelBuilder)
         {
-            var filePath = @"C:\Users\ModalGR\OneDrive - MODALGR\Área de Trabalho\Projetos Treino\SistemaApp\SistemaApp.Core\Csv\orderDetails.csv";
+            var filePath = Path.GetFullPath("orderDetails.csv");
             var csvReader = new CsvReaderService<OrderDetail>();
             var orderDetails = csvReader.ReadCsv(filePath);
 
