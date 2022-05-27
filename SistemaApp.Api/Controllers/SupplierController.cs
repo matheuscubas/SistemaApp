@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
-using SistemaApp.Core.Data;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
 using Logger = Serilog.ILogger;

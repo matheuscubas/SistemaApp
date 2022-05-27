@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
-using SistemaApp.Core.Data;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
 using Logger = Serilog.ILogger;
 
 namespace SistemaApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
-using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
@@ -10,7 +9,7 @@ using Logger = Serilog.ILogger;
 namespace SistemaApp.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class OrderController : ControllerBase
     {
         private readonly OrderRepository _repository;
@@ -22,7 +21,7 @@ namespace SistemaApp.Api.Controllers
             _logger = logger;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<ActionResult<ResultViewModel<OrderWithNamesDto>>> CreateOrder(
             [FromBody] CreateOrderDto model)
         {
@@ -60,7 +59,7 @@ namespace SistemaApp.Api.Controllers
         }
 
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<IEnumerable<OrderWithNamesDto>>>> GetOrder(int id)
         {
             var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
@@ -94,7 +93,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
         
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderWithNamesDto>>> GetAllOrders()
         {
             var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
@@ -114,7 +113,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<PaginationResult<Order>>> GetPaginatedOrders(
             [FromQuery]int pageSize = 5, 
             [FromQuery]int pageNumber = 1)
@@ -135,7 +134,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<ActionResult<ResultViewModel<Order>>> UpdateOrder([FromBody]  UpdateOrderDto model)
         {
             var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
@@ -161,7 +160,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
         
-        [HttpDelete("[action]")]
+        [HttpDelete]
         public async Task<ActionResult> DeleteOrder(int id)
         {
             var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();

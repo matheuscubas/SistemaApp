@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
-using SistemaApp.Core.Data;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
 using Logger = Serilog.ILogger;
@@ -9,7 +8,7 @@ using Logger = Serilog.ILogger;
 
 namespace SistemaApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ShipperController : ControllerBase
     {
@@ -22,7 +21,7 @@ namespace SistemaApp.Api.Controllers
             _logger = logger;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<ActionResult<ResultViewModel<Shipper>>> CreateShipper([FromBody] Shipper model)
         {
             var result = new ResultViewModel<Shipper>();
@@ -54,7 +53,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<Shipper>>> GetShipper(int id)
         {
             var result = new ResultViewModel<Shipper>();
@@ -81,7 +80,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<IEnumerable<Shipper>>>> GetAllShippers()
         {
             var result = new ResultViewModel<IEnumerable<Shipper>>();
@@ -102,7 +101,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<PaginationResult<Shipper>>>> GetPaginatedShippers(
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber = 1)
@@ -131,7 +130,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<ActionResult<ResultViewModel<Shipper>>> UpdateShipper([FromBody] Shipper model)
         {
             var result = new ResultViewModel<Shipper>();
@@ -165,7 +164,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete]
         public async Task<ActionResult<ResultViewModel<Shipper>>> DeleteShipper(int id)
         {
             var result = new ResultViewModel<Shipper>();

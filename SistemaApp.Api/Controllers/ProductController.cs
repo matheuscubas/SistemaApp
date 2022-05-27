@@ -8,7 +8,7 @@ using Logger = Serilog.ILogger;
 
 namespace SistemaApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace SistemaApp.Api.Controllers
             _logger = logger;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<ActionResult<ResultViewModel<Product>>> CreateProduct([FromBody] Product model)
         {
             var result = new ResultViewModel<Product>();
@@ -54,7 +54,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<Product>>> GetProduct(int id)
         {
             var result = new ResultViewModel<Product>();
@@ -81,7 +81,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<IEnumerable<Product>>>> GetAllProducts()
         {
             var result = new ResultViewModel<IEnumerable<Product>>();
@@ -102,7 +102,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<PaginationResult<Product>>>> GetPaginatedProducts(
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber = 1)
@@ -131,7 +131,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<ActionResult<ResultViewModel<Product>>> UpdateProduct([FromBody] Product model)
         {
             var result = new ResultViewModel<Product>();
@@ -165,7 +165,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete]
         public async Task<ActionResult<ResultViewModel<Product>>> DeleteProduct(int id)
         {
             var result = new ResultViewModel<Product>();

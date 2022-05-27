@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
-using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
@@ -9,7 +8,7 @@ using Logger = Serilog.ILogger;
 
 namespace SistemaApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -22,7 +21,7 @@ namespace SistemaApp.Api.Controllers
             _repository = repository;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<ActionResult<ResultViewModel<Customer>>> CreateCustomer([FromBody] CreateCustomerDto model)
         {
             var result = new ResultViewModel<Customer>();
@@ -54,7 +53,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<Customer>>> GetCustomer(int id)
         {
             var result = new ResultViewModel<Customer>();
@@ -82,7 +81,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<IEnumerable<Customer>>>> GetAllCustomers()
         {
             var result = new ResultViewModel<IEnumerable<Customer>>();
@@ -104,7 +103,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<PaginationResult<Customer>>>> GetPaginetedCustomers(
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber =1)
@@ -133,7 +132,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<ActionResult<ResultViewModel<Customer>>> UpdateCustomer(Customer model)
         {
             var result = new ResultViewModel<Customer>();
@@ -168,7 +167,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete]
         public async Task<ActionResult<ResultViewModel<Customer>>> DeleteCustomer(int id)
         {
             var result = new ResultViewModel<Customer>();

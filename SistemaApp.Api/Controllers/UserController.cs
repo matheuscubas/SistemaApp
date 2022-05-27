@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaApp.Api.Validators;
 using SistemaApp.Api.ViewModels;
-using SistemaApp.Core.Data;
 using SistemaApp.Core.Dtos;
 using SistemaApp.Core.Models;
 using SistemaApp.Core.Repositories;
-using SistemaApp.Core.Services.ConnectionService;
 using SistemaApp.Core.Services.PasswordService;
 using SistemaApp.Core.Services.TokenService;
 using Logger = Serilog.ILogger;
@@ -13,7 +11,7 @@ using Logger = Serilog.ILogger;
 namespace SistemaApp.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class UserController : ControllerBase
     {
         private readonly TokenService _tokenService;
@@ -33,7 +31,7 @@ namespace SistemaApp.Api.Controllers
             _logger = logger;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<ActionResult<ResultViewModel<string>>> Login([FromBody] UserLoginViewModel model)
         {
             var result = new ResultViewModel<string>();
@@ -53,7 +51,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<ActionResult<ResultViewModel<User>>> SignIn([FromBody] CrateUserDto model)
         {
             var result = new ResultViewModel<User>();
