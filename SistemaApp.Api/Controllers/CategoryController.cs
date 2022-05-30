@@ -25,7 +25,7 @@ namespace SistemaApp.Api.Controllers
         {
             var result = new ResultViewModel<Category>();
             var validator = new CreateCategoryValidator();
-            var validationResult = validator.Validate(model);
+            var validationResult = await validator.ValidateAsync(model);
 
             if(!validationResult.IsValid)
             {
@@ -41,10 +41,9 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-               var createdCategory = await _repository.CreateCategory(model);
-                result.Data = createdCategory;
+                result.Data = await _repository.CreateCategory(model);
                 result.Sucess = true;
-                _logger.Information($"Category {createdCategory.Name} successfully created.");
+                _logger.Information($"Category {result.Data.Name} successfully created.");
             }
             catch(Exception ex)
             {
@@ -70,9 +69,7 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-                var category = await _repository.GetById(id);
-
-                result.Data = category;
+                result.Data = await _repository.GetById(id);
                 result.Sucess = true;
             }
             catch(Exception ex)
@@ -81,7 +78,6 @@ namespace SistemaApp.Api.Controllers
                 _logger.Warning(ex.Message);
                 return BadRequest(result);
             }
-            
 
             return Ok(result);
         }
@@ -93,10 +89,9 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-                var categories = await _repository.GetAllAsync();
-                result.Data = categories;
+                result.Data = await _repository.GetAllAsync();
                 result.Sucess = true;
-                _logger.Information($"returning {categories.Count()} categories");
+                _logger.Information($"returning {result.Data.Count()} categories");
             }
             catch(Exception ex)
             {
@@ -123,8 +118,7 @@ namespace SistemaApp.Api.Controllers
             }
             try
             {
-                var paginatedCategories = await _repository.GetPaginated(pageSize, pageNumber);
-                result.Data = paginatedCategories;
+                result.Data = await _repository.GetPaginated(pageSize, pageNumber);
                 result.Sucess = true;
             }
             catch(Exception ex)
@@ -142,10 +136,11 @@ namespace SistemaApp.Api.Controllers
         {
             var result = new ResultViewModel<Category>();
             var validator = new UpdateCategoryValidator();
-            var validationResult = validator.Validate(model);
+            var validationResult = await validator.ValidateAsync(model);
 
             if(!validationResult.IsValid)
             {
+
                 foreach(var error in validationResult.Errors)
                 {
                     _logger.Information(error.ToString());

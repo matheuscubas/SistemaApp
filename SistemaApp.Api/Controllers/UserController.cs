@@ -14,14 +14,14 @@ namespace SistemaApp.Api.Controllers
     [Route("api/[controller]/[action]")]
     public class UserController : ControllerBase
     {
-        private readonly TokenService _tokenService;
-        private readonly PasswordService _passwordService;
+        private readonly ITokenService _tokenService;
+        private readonly IPasswordService _passwordService;
         private readonly UserRepository _repository;
         private readonly Logger _logger;
 
         public UserController(
-            TokenService tokenService, 
-            PasswordService passwordService,
+            ITokenService tokenService, 
+            IPasswordService passwordService,
             Logger logger,
             UserRepository repository)
         {
@@ -43,9 +43,8 @@ namespace SistemaApp.Api.Controllers
                 result.Errors.Add("Invalid password, please try again.");
                 return BadRequest(result);
             }
-            var token = _tokenService.GenerateToken(user);
 
-            result.Data = token;
+            result.Data = _tokenService.GenerateToken(user);
             result.Sucess = true;
             _logger.Information($"User {user.Username} have succesfully logged in.");
             return Ok(result);
@@ -60,10 +59,13 @@ namespace SistemaApp.Api.Controllers
 
             if(!validationResult.IsValid)
             {
-                var errors = validationResult.Errors;
-                _logger.Information(errors.First().ErrorMessage);
-                foreach(var error in errors)
-                result.Errors.Add(error.ToString());
+
+                foreach(var error in validationResult.Errors)
+                {
+                    _logger.Information(error.ToString());
+                    result.Errors.Add(error.ToString());
+                }
+
                 return BadRequest(result);
             }
 
@@ -76,6 +78,7 @@ namespace SistemaApp.Api.Controllers
             }
             catch(Exception ex)
             {
+                _logger.Warning(ex.Message);
                 result.Errors.Add(ex.Message);
                 return BadRequest(result);
             }

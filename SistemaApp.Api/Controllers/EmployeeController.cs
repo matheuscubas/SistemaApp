@@ -14,13 +14,13 @@ namespace SistemaApp.Api.Controllers
         private readonly Logger _logger;
         private readonly EmployeeRepository _repository;
 
-        public EmployeeController(Serilog.ILogger logger, EmployeeRepository repository)
+        public EmployeeController(Logger logger, EmployeeRepository repository)
         {
             _logger = logger;
             _repository = repository;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<ActionResult<ResultViewModel<Employee>>> CreateEmployee([FromBody] Employee model)
         {
             var result = new ResultViewModel<Employee>();
@@ -30,8 +30,11 @@ namespace SistemaApp.Api.Controllers
             if (!validationResult.IsValid)
             {
                 _logger.Information(validationResult.Errors.First().ToString());
+
                 foreach (var error in validationResult.Errors)
+                {
                     result.Errors.Add(error.ToString());
+                }
 
                 return BadRequest(result);
             }
@@ -53,7 +56,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<Employee>>> GetEmployee(int id)
         {
             var result = new ResultViewModel<Employee>();
@@ -80,7 +83,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<IEnumerable<Employee>>>> GetEmployees()
         {
             var result = new ResultViewModel<IEnumerable<Employee>>();
@@ -101,7 +104,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public async Task<ActionResult<ResultViewModel<PaginationResult<Employee>>>> GetPaginatedEmployees(
             [FromQuery] int pageSize = 5,
             [FromQuery] int pageNumber = 1)
@@ -130,7 +133,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<ActionResult<ResultViewModel<Employee>>> UpdateEmployee([FromBody] Employee model)
         {
             var result = new ResultViewModel<Employee>();
@@ -139,11 +142,13 @@ namespace SistemaApp.Api.Controllers
 
             if (!validationResult.IsValid)
             {
+
                 foreach (var error in validationResult.Errors)
                 {
                     _logger.Information(error.ToString());
                     result.Errors.Add(error.ToString());
                 }
+
                 return BadRequest(result);
             }
 
@@ -164,7 +169,7 @@ namespace SistemaApp.Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete]
         public async Task<ActionResult<ResultViewModel<Employee>>> DeleteEmployee(int id)
         {
             var result = new ResultViewModel<Employee>();
@@ -190,6 +195,7 @@ namespace SistemaApp.Api.Controllers
                 _logger.Warning(ex.Message);
                 return BadRequest(result);
             }
+
             return Ok(result);
         }
     }

@@ -14,7 +14,7 @@ namespace SistemaApp.Api.Controllers
         private readonly SupplierRepository _repository;
         private readonly Logger _logger;
 
-        public SupplierController(SupplierRepository repository, Serilog.ILogger logger)
+        public SupplierController(SupplierRepository repository, Logger logger)
         {
             _repository = repository;
             _logger = logger;

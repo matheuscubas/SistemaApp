@@ -15,7 +15,7 @@ namespace SistemaApp.Api.Controllers
         private readonly ProductRepository _repository;
         private readonly Logger _logger;
 
-        public ProductController(ProductRepository repository, Serilog.ILogger logger)
+        public ProductController(ProductRepository repository, Logger logger)
         {
             _repository = repository;
             _logger = logger;
@@ -30,9 +30,11 @@ namespace SistemaApp.Api.Controllers
 
             if (!validationResult.IsValid)
             {
-                _logger.Information(validationResult.Errors.First().ToString());
                 foreach (var error in validationResult.Errors)
+                {
                     result.Errors.Add(error.ToString());
+                    _logger.Information(error.ToString());
+                }
 
                 return BadRequest(result);
             }

@@ -15,7 +15,7 @@ namespace SistemaApp.Api.Controllers
         private readonly ShipperRepository _repository;
         private readonly Logger _logger;
 
-        public ShipperController(ShipperRepository repository, Serilog.ILogger logger)
+        public ShipperController(ShipperRepository repository, Logger logger)
         {
             _repository = repository;
             _logger = logger;

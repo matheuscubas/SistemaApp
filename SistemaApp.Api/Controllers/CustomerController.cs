@@ -32,8 +32,12 @@ namespace SistemaApp.Api.Controllers
             {
                 var errors = validationResult.Errors;
                 _logger.Information(errors.First().ErrorMessage);
+
                 foreach (var error in errors)
+                {
                     result.Errors.Add(error.ToString());
+                }
+
                 return BadRequest(result);
             }
 
@@ -88,10 +92,9 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-                var customers = await _repository.GetAllAsync();
-                result.Data = customers;
+                result.Data = await _repository.GetAllAsync();
                 result.Sucess = true;
-                _logger.Information($"returning {customers.Count()} customers");
+                _logger.Information($"returning {result.Data.Count()} customers");
             }
             catch(Exception ex)
             {
@@ -118,8 +121,7 @@ namespace SistemaApp.Api.Controllers
             }
             try
             {
-                var paginatedCategories = await _repository.GetPaginated(pageSize, pageNumber);
-                result.Data = paginatedCategories;
+                result.Data = await _repository.GetPaginated(pageSize, pageNumber);
                 result.Sucess = true;
             }
             catch (Exception ex)
@@ -141,6 +143,7 @@ namespace SistemaApp.Api.Controllers
 
             if (!validationResult.IsValid)
             {
+
                 foreach (var error in validationResult.Errors)
                 {
                     _logger.Information(error.ToString());

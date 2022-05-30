@@ -31,11 +31,11 @@ namespace SistemaApp.Api.Controllers
 
             if (!validatorResult.IsValid)
             {
-                var errors = validatorResult.Errors;
-                result.Errors.Add(errors.First().ErrorMessage);
-                _logger.Information(errors.First().ErrorMessage);
-                foreach (var error in errors)
-                    result.Errors.Add(error.ErrorMessage);
+                foreach (var error in validatorResult.Errors)
+                {
+                    result.Errors.Add(error.ToString());
+                    _logger.Information(error.ToString());
+                }
                 return BadRequest(result);
             }
 
@@ -55,6 +55,7 @@ namespace SistemaApp.Api.Controllers
                 _logger.Warning(ex.Message);
                 return BadRequest(result);
             }
+
             return Ok(result);
         }
 
@@ -110,6 +111,7 @@ namespace SistemaApp.Api.Controllers
                 result.Errors.Add("Something went wrong, please try again latter.");
                 return StatusCode(StatusCodes.Status500InternalServerError, result);
             }
+
             return Ok(result);
         }
 
@@ -139,7 +141,7 @@ namespace SistemaApp.Api.Controllers
         {
             var result = new ResultViewModel<IEnumerable<OrderWithNamesDto>>();
             var validator = new UpdateOrderDtoValidator();
-            var validationResult = validator.Validate(model);
+            var validationResult = await validator.ValidateAsync(model);
 
             if (!validationResult.IsValid)
             {
