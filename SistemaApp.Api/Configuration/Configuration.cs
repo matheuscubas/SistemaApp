@@ -33,9 +33,9 @@ namespace SistemaApp.Api.Configuration
                 .Configuration
                 .GetConnectionString("DefaultConnection")!
                 ));
-            builder.Services.AddScoped<ConnectionService>();
-            builder.Services.AddScoped<TokenService>();
-            builder.Services.AddScoped<PasswordService>();
+            builder.Services.AddScoped<IConnectionService, ConnectionService>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped<IPasswordService, PasswordService>();
             builder.Services.AddSingleton<Logger>(logger);
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<OrderRepository>();

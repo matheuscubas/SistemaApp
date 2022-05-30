@@ -155,7 +155,15 @@ namespace SistemaApp.Api.Controllers
 
             try
             {
-                _repository.Update(model);
+                var updated = _repository.Update(model);
+
+                if (updated < 1)
+                {
+                    result.Errors.Add("something went wrong try again later");
+                    _logger.Warning("Unnable to update model.");
+                    return StatusCode(StatusCodes.Status500InternalServerError, result);
+                }
+
                 _logger.Information($"Customer {model.Name} updated successfully.");
                 result.Data = await _repository.GetById(model.Id);
                 result.Sucess = true;

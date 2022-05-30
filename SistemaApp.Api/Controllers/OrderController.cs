@@ -154,11 +154,28 @@ namespace SistemaApp.Api.Controllers
                 return BadRequest(result);
             }
 
-            await _repository.UpdateAsync(model);
-            _logger.Information($"The order {model.OrderId} has been update successfully!");
-            result.Data = await _repository.GetByIdAsync(model.OrderId);
-            result.Sucess = true;
+            try
+            {
+                var updated = await _repository.UpdateAsync(model);
 
+                if (updated < 1)
+                {
+                    result.Errors.Add("something went wrong try again later");
+                    _logger.Warning("Unnable to update model.");
+                    return StatusCode(StatusCodes.Status500InternalServerError, result);
+                }
+
+                _logger.Information($"The order {model.OrderId} has been update successfully!");
+                result.Data = await _repository.GetByIdAsync(model.OrderId);
+                result.Sucess = true;
+            }
+            catch(Exception ex)
+            {
+                _logger.Warning(ex.Message);
+                result.Errors.Add(ex.Message);
+                return BadRequest(result);
+            }
+            
             return Ok(result);
         }
         

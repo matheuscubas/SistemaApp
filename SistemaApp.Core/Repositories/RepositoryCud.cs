@@ -21,11 +21,11 @@ namespace SistemaApp.Core.Repositories
             _context.SaveChanges();
         }
 
-        public virtual void Update(T model)
+        public virtual int Update(T model)
         {
             _dbSet.Attach(model);
             _context.Entry(model).State = EntityState.Modified;
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
 
         public virtual void DeleteAsync(int id)

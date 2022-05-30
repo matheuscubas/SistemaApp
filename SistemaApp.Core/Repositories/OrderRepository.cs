@@ -111,10 +111,10 @@ namespace SistemaApp.Core.Repositories
             return result;
         }
 
-        public async Task UpdateAsync(UpdateOrderDto model)
+        public async Task<int> UpdateAsync(UpdateOrderDto model)
         {
             var order = await GetById(model.OrderId);
-            //TODO: quando tiver orderDetail Repository usar metodo get by id aqui.
+
             var orderDetailQuery = @"SELECT OrderDetails.OrderDetailId AS Id,
                                     OrderDetails.OrderId AS OrderId,
                                     OrderDetails.ProductId AS ProductId,
@@ -125,7 +125,7 @@ namespace SistemaApp.Core.Repositories
 
             _context.Orders.Attach(order);
             using var connection = _connection.Connection();
-            var orderDetails = await connection.QueryFirstAsync<OrderDetail>(orderDetailQuery, new { OrderId = model.OrderId, ProductId = model.ProductId });
+            var orderDetails = await connection.QueryFirstAsync<OrderDetail>(orderDetailQuery, new { model.OrderId, model.ProductId });
             _context.OrderDetails.Attach(orderDetails);
 
             order.ShipperId = model.ShipperId;
@@ -133,7 +133,7 @@ namespace SistemaApp.Core.Repositories
 
             _context.OrderDetails.Update(orderDetails);
             _context.Orders.Update(order);
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
