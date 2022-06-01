@@ -1,4 +1,5 @@
 ﻿using CsvHelper.Configuration.Attributes;
+using System.Text.Json.Serialization;
 
 namespace SistemaApp.Core.Models
 {
@@ -22,6 +23,7 @@ namespace SistemaApp.Core.Models
         [Index(5)]
         public string Notes { get; set; }
 
+        [JsonIgnore]
         [Ignore]
         public ICollection<Order>? Orders { get; set; }
     }

@@ -12,17 +12,19 @@ namespace SistemaApp.Core.Extensions
             var serviceProvider = collection.BuildServiceProvider();
             var context = serviceProvider.GetService<SistemaAppDbContext>();
 
-            var sets = context?.GetDbSetProperties();
-
             if (context is not null && context.Database.CanConnect())
             {
-                if (sets is not null)
+                var setsTypes = context?.GetDbSetProperties();
+
+                if (setsTypes is not null)
                 {
-                    foreach (var set in sets)
+                    foreach (var SetType in setsTypes)
                     {
-                        MethodInfo? method = typeof(SeederExtensions).GetMethod(nameof(Seed), BindingFlags.NonPublic | BindingFlags.Static);
-                        MethodInfo? generic = method?.MakeGenericMethod(set.PropertyType.GetGenericArguments().First());
-                        generic?.Invoke(set, new object?[] { context });
+                        MethodInfo? method = typeof(SeederExtensions)
+                            .GetMethod(nameof(Seed), BindingFlags.NonPublic | BindingFlags.Static)
+                            .MakeGenericMethod(SetType);
+
+                      method.Invoke(SetType, new object?[] { context });
                     }
                 }
             }

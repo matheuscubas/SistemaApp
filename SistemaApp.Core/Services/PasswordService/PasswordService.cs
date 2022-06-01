@@ -1,8 +1,8 @@
 ﻿using SistemaApp.Core.Models;
+using Encrypt = BCrypt.Net.BCrypt;
 
 namespace SistemaApp.Core.Services.PasswordService
 {
-    using BCrypt.Net;
 
     public class PasswordService : IPasswordService
     {
@@ -14,9 +14,9 @@ namespace SistemaApp.Core.Services.PasswordService
         }
 
         public string EncryptPassword(string password)
-            => BCrypt.HashPassword(password);
+            => Encrypt.HashPassword(password);
 
         public bool IsCorrectPassword(string password, User user)
-            => BCrypt.Verify(password, user.Password);
+            => Encrypt.Verify(password, user.Password);
     }
 }

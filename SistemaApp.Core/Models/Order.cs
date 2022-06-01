@@ -1,4 +1,5 @@
 ﻿using CsvHelper.Configuration.Attributes;
+using System.Text.Json.Serialization;
 
 namespace SistemaApp.Core.Models
 {
@@ -19,12 +20,19 @@ namespace SistemaApp.Core.Models
         [Index(3)]
         public DateTime OrderDate { get; set; }
 
+        [JsonIgnore]
         [Ignore]
         public ICollection<OrderDetail> OrdersDetails { get; set; }
+
+        [JsonIgnore]
         [Ignore]
         public Customer Customer { get; set; }
+
+        [JsonIgnore]
         [Ignore]
         public Employee Employee { get; set; }
+
+        [JsonIgnore]
         [Ignore]
         public Shipper Shipper { get; set; }
     }

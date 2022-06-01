@@ -12,9 +12,8 @@ namespace SistemaApp.Core.Data
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+            => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }

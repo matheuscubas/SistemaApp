@@ -1,4 +1,5 @@
 ﻿using CsvHelper.Configuration.Attributes;
+using System.Text.Json.Serialization;
 
 namespace SistemaApp.Core.Models
 {
@@ -28,6 +29,7 @@ namespace SistemaApp.Core.Models
         [Index(7)]
         public string Phone { get; set; }
 
+        [JsonIgnore]
         [Ignore]
         public ICollection<Product>? Products { get; set; }
     }

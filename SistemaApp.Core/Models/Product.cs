@@ -1,4 +1,5 @@
 ﻿using CsvHelper.Configuration.Attributes;
+using System.Text.Json.Serialization;
 
 namespace SistemaApp.Core.Models
 {
@@ -22,9 +23,11 @@ namespace SistemaApp.Core.Models
         [Name("price")]
         public double Price { get; set; }
 
+        [JsonIgnore]
         [Ignore]
         public Category? Category { get; set; }
 
+        [JsonIgnore]
         [Ignore]
         public Supplier? Supplier { get; set; }
     }
