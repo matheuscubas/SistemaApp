@@ -6,9 +6,10 @@ namespace SistemaApp.Core.Data.Seed
 {
     public class ShipperSeeder : ISeeder<Shipper>
     {
+        private readonly string _filePath = @"..\SistemaApp.Core\csv\shippers.csv";
         public void SeedData(SistemaAppDbContext context)
         {
-            var filePath = Path.GetFullPath("shippers.csv");
+            var filePath = Path.GetFullPath(_filePath);
             var csvReader = new CsvReaderService<Shipper>();
             var shippers = csvReader.ReadCsv(filePath);
 
@@ -22,7 +23,7 @@ namespace SistemaApp.Core.Data.Seed
 
         public void SeedData(ModelBuilder modelBuilder)
         {
-            var filePath = Path.GetFullPath("shippers.csv");
+            var filePath = Path.GetFullPath(_filePath);
             var csvReader = new CsvReaderService<Shipper>();
             var shippers = csvReader.ReadCsv(filePath);
 
