@@ -61,6 +61,35 @@ dotnet ef run database update --project SistemaApp.Core -s SistemaApp.Api
 
 Then run the application, the dabase will be seeded on launch.
 
+## Hot to use
+
+Every entity has a CRUD with Create, GetEntity, GetAllEntites, GetPaginatedEntities, Update and Delete methods, besides Users and Roles witch are used for Authentication. the response of every action is an object with three attributes data(the response data), success(boolean), errors(array with errors message)
+```json
+{
+  "data": {},
+  "success": true,
+  "errors": []
+}
+```
+
+Example:
+
+- api/Category/GetCategory?id=1
+  - method: Get
+  - 200 --> Return:
+  
+ ```json
+    {
+      "data": {
+        "id": 1,
+        "name": "Beverages",
+        "description": "Soft drinks, coffees, teas, beers and ales"
+        },
+      "success": true,
+      "errors": []
+    }
+ ```
+
 ## Conclusion
 
 This project was a big step for me, I've come in touch with a lot of topics and developing patterns that were new for me, for instance using IRepository, an ORM (Entity Frame Work) and micro-ORM (Dapper), logging with Serilog, getting seed data from a .csv file, etc. Every other features in this project were a huge experience for me, but using entities designed by someone else (the data and entities are from w3school SQL course), experimenting with Reflection on the seed methods, having to work with API and CORE divided into two domains, all of which were a big challenge at first, but also were the ones i enjoyed the most.
