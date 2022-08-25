@@ -103,7 +103,7 @@ I have plans to keep implementing and adding new features and technologies to th
 
 ## Acknowledgments
 
-I would like to thank my mentor [Guilherme](https://github.com/guilhermerochas/) for  elaborating and guidind me through this project. I'm grateful for his efforts into training and helping me to achieve my goals as a developer.
+I would like to thank my mentor [Guilherme](https://github.com/guilhermerochas/) for  elaborating and guiding me through this project. I'm grateful for his efforts into training and helping me to achieve my goals as a developer.
 
 ## License
 
