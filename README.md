@@ -37,7 +37,7 @@ If you need more information you can check the documentation [here](https://docs
 
 ## How to run the project
 
-Clone the repo:
+Clone this repo:
 
 ```git
 git clone https://github.com/matheuscubas/SistemaApp.git
@@ -59,9 +59,9 @@ Run this at root SistemaApp to to apply migrations and crate the database.
 dotnet ef run database update --project SistemaApp.Core -s SistemaApp.Api
 ```
 
-Then run the application, the dabase will be seeded on launch.
+Then run the application, the database will be seeded on launch.
 
-## Hot to use
+## How to use
 
 Every entity has a CRUD with Create, GetEntity, GetAllEntites, GetPaginatedEntities, Update and Delete methods, besides Users and Roles witch are used for Authentication. the response of every action is an object with three attributes data(the response data), success(boolean), errors(array with errors message)
 ```json
